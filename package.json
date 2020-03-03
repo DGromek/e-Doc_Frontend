@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "scss-watch": "node-sass --watch scss -o css",
+    "scss-compile": "node-sass scss -o css"
   },
   "private": true,
   "dependencies": {
@@ -16,9 +18,11 @@
     "@angular/compiler": "~9.0.1",
     "@angular/core": "~9.0.1",
     "@angular/forms": "~9.0.1",
+    "@angular/localize": "^9.0.4",
     "@angular/platform-browser": "~9.0.1",
     "@angular/platform-browser-dynamic": "~9.0.1",
     "@angular/router": "~9.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^6.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -42,6 +46,8 @@
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "node-sass": "^4.13.1",
+    "bootstrap": "^4.4.1"
   }
 }
