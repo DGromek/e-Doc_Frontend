@@ -1,0 +1,18 @@
+.brand-name {
+  font-weight: 100;
+  font-family: "Montserrat", sans-serif;
+  font-size: 48px;
+  margin-bottom: -5px;
+  margin-top: -8px;
+}
+
+.red-cross-logo {
+  width: 33px;
+  height: 33px;
+  margin-right: 6px;
+}
+
+nav .navbar-nav li a{
+  color: #ebebeb !important;
+}
+
