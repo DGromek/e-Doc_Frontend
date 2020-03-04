@@ -1,0 +1,11 @@
+.lower-footer {
+  font-size: 12px;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+}
