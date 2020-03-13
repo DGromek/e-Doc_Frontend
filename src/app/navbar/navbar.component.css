@@ -1,5 +1,5 @@
 .brand-name {
-  font-weight: 100;
+  font-weight: 200;
   font-family: "Montserrat", sans-serif;
   font-size: 48px;
   margin-bottom: -5px;
@@ -16,4 +16,9 @@ nav .navbar-nav li a{
   color: #ebebeb !important;
   padding-top: 12px;
 }
+
+.nav-link {
+  font-size: 16px;
+}
+
 

@@ -2,8 +2,12 @@
   font-size: 12px;
 }
 
+footer {
+  color: #ebebeb !important;
+}
+
 a {
-  color: white;
+  color: #ebebeb !important;
 }
 
 a:hover {
