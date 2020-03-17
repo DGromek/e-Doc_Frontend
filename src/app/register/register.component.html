@@ -1,0 +1,59 @@
+<div class="container p-0">
+  <div class="col-12 col-md-8 col-lg-6 mx-auto shadow rounded bg-light p-5 my-5">
+    <h4 class="text-center mb-3">Zarejestruj się</h4>
+
+    <form>
+      <ngb-carousel #carousel>
+        <ng-template ngbSlide>
+          <div class="form-group mt-2">
+            <input type="text" class="form-control" id="pesel" required>
+            <label class="form-control-placeholder" for="pesel">Podaj numer PESEL</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="firstName" required>
+            <label class="form-control-placeholder" for="firstName">Podaj imię</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="lastName" required>
+            <label class="form-control-placeholder" for="lastName">Podaj nazwisko</label>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="form-group mt-2">
+            <input type="text" class="form-control" id="city" required>
+            <label class="form-control-placeholder" for="city">Podaj miasto</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="street" required>
+            <label class="form-control-placeholder" for="street">Podaj ulicę</label>
+          </div>
+          <div class="form-group form-row">
+            <div class="col-6">
+              <input type="text" class="form-control" id="houseNr" required>
+              <label class="form-control-placeholder" for="houseNr">Podaj numer domu</label>
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control" id="postalCode" required>
+              <label class="form-control-placeholder" for="postalCode">Podaj kod pocztowy</label>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+
+      <!-- Control panel -->
+      <div class="row">
+        <div class="col-4">
+          <button class="btn btn-secondary" *ngIf="this.currentId != 1" (click)="this.prev()">Cofnij</button>
+        </div>
+        <div class="col-4 text-center">
+          {{this.currentId}} / {{this.maxId}}
+        </div>
+        <div class="col-4 text-right">
+          <button class="btn btn-secondary" *ngIf="this.currentId != this.maxId" (click)="this.next()">Dalej</button>
+          <button class="btn btn-secondary" *ngIf="this.currentId == this.maxId">Wyślij</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

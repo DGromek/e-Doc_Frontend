@@ -37,6 +37,18 @@ body {
   background-image: linear-gradient(315deg, #aee1f9 0%, #f6ebe6 74%);
 }
 
+.btn {
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  height: 45px;
+}
+
+/* Forms */
+
 .form-control {
   border-width: 0 0 2px 0;
   border-radius: 0;
@@ -57,12 +69,57 @@ body {
   border-radius: 0;
 }
 
-.btn {
-  font-family: "Roboto", serif;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
-  border-radius: 0;
-  height: 45px;
+
+
+
+/* Carousel animation */
+
+.carousel-item {
+  /* Force to always be block */
+  display: block !important;
+  z-index: 1;
+  position: absolute;
+  transform: translateX(175%);
+  opacity: 0;
+  transition:all  1.2s;
+  visibility: hidden;
+}
+
+.carousel-item.active {
+  position: relative;
+  transform: translateX(0);
+  visibility: visible ;
+  opacity: 1;
+}
+
+/* Floating labels */
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 23px 0 0 13px;
+  transition: all 200ms;
+  opacity: 0.5;
+  font-size: 16px;
+}
+
+/*.form-row .col-sm-6 .form-control-placeholder {*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  padding: 16px 0 0 13px;*/
+/*  transition: all 200ms;*/
+/*  opacity: 0.5;*/
+/*  font-size: 16px;*/
+/*}*/
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  transform: translate(-10px, -33px);
+  opacity: 1;
 }
