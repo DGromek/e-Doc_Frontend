@@ -1,4 +1,14 @@
 .btn {
-  width: 100px;
+  min-width: 100px;
+}
+
+.col-2 {
+  padding: 0 !important;
+}
+
+@media only screen and (max-width: 575px) {
+  .col-5 {
+    padding: 0 !important;
+  }
 }
 

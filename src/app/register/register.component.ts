@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,10 +6,10 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
   @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
   currentId = 1;
-  readonly maxId = 3;
+  maxId: number;
   constructor() {
   }
 
@@ -17,6 +17,9 @@ export class RegisterComponent implements OnInit {
     this.carousel.pause();
     this.carousel.showNavigationArrows = false;
     this.carousel.showNavigationIndicators = false;
+  }
+  ngAfterViewInit() {
+    this.maxId = this.carousel.slides.length;
   }
   next() {
     this.currentId++;

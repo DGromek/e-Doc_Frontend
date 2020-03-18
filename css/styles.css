@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:200&display=swap'); /* Logo */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400&display=swap'); /* Headings and UI */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200&display=swap');
+/* Logo */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400&display=swap');
+/* Headings and UI */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 
 
@@ -53,6 +55,7 @@ body {
   border-width: 0 0 2px 0;
   border-radius: 0;
   padding: 26px 11px;
+  margin-bottom: 1.5rem;
 }
 
 .form-control:focus {
@@ -62,14 +65,27 @@ body {
 
 .form-group {
   padding: 8px 0;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 575px)  {
+  .form-row .col-sm-6 {
+    padding: 8px 0;
+  }
+
+  .form-row {
+    padding: 0;
+  }
+
+  .form-row .col-sm-6 .form-control-placeholder {
+    padding: 23px 0 0 18px !important;
+  }
 }
 
 .input-group-text {
   border-width: 0 0 2px 0;
   border-radius: 0;
 }
-
-
 
 
 /* Carousel animation */
@@ -81,14 +97,15 @@ body {
   position: absolute;
   transform: translateX(175%);
   opacity: 0;
-  transition:all  1.2s;
+  transition: all 1.2s;
   visibility: hidden;
+  min-height: 300px !important;
 }
 
 .carousel-item.active {
   position: relative;
   transform: translateX(0);
-  visibility: visible ;
+  visibility: visible;
   opacity: 1;
 }
 
@@ -96,7 +113,6 @@ body {
 
 .form-group {
   position: relative;
-  margin-bottom: 1.5rem;
 }
 
 .form-control-placeholder {
@@ -108,14 +124,9 @@ body {
   font-size: 16px;
 }
 
-/*.form-row .col-sm-6 .form-control-placeholder {*/
-/*  position: absolute;*/
-/*  top: 0;*/
-/*  padding: 16px 0 0 13px;*/
-/*  transition: all 200ms;*/
-/*  opacity: 0.5;*/
-/*  font-size: 16px;*/
-/*}*/
+.form-row .col-sm-6 .form-control-placeholder {
+  padding: 15px 0 0 13px;
+}
 
 .form-control:focus + .form-control-placeholder,
 .form-control:valid + .form-control-placeholder {

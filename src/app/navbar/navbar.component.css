@@ -9,7 +9,8 @@
 .red-cross-logo {
   width: 33px;
   height: 33px;
-  margin-right: 6px;
+  margin-bottom: 7px;
+  margin-right: -10px;
 }
 
 nav .navbar-nav li a{
