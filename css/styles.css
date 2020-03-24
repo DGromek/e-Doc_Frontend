@@ -134,3 +134,27 @@ body {
   transform: translate(-10px, -33px);
   opacity: 1;
 }
+
+.form-error-box {
+  margin-top: -25px;
+}
+
+.form-error {
+  color: darkred;
+}
+
+.col-sm-6 .form-error {
+  padding-right: 5px;
+}
+
+/*.ng-valid[required], .ng-valid.required  {*/
+/*  border-bottom: 2px solid #42A948; !* green *!*/
+/*}*/
+
+/*.ng-invalid:not(form)  {*/
+/*  border-bottom: 2px solid #a94442; !* red *!*/
+/*}*/
+
+/*.ng-untouched {*/
+/*  border-bottom:2px solid #1a237e !important;*/
+/*}*/

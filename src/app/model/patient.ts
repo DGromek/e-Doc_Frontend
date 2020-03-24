@@ -8,6 +8,7 @@ export class Patient {
     public houseNr?: string,
     public postalCode?: string,
     public phoneNr?: string,
-    public email?: string
+    public email?: string,
+    public approval?: boolean
   ) { }
 }
