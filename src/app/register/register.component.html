@@ -1,28 +1,25 @@
 <div class="container p-0">
   <div class="col-12 col-md-8 col-lg-6 mx-auto shadow rounded bg-light p-5 my-5 register-box">
     <h4 class="text-center mb-3">Zarejestruj się</h4>
-    <form [formGroup]="registerForm">
-
-      {{diagnostic}}
-
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <ngb-carousel #carousel>
         <ng-template ngbSlide>
           <div class="form-group mt-2">
-            <input type="text" class="form-control" id="pesel" [(ngModel)]="patient.pesel" formControlName="pesel" name="pesel" required>
+            <input type="text" class="form-control" id="pesel" formControlName="pesel" name="pesel" required>
             <label class="form-control-placeholder" for="pesel">Podaj numer PESEL*</label>
             <div *ngIf="pesel.invalid && (pesel.dirty || pesel.touched)" class="form-error-box text-right">
               <small class="form-error">Podaj poprawny numer PESEL.</small>
             </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="firstName" [(ngModel)]="patient.firstName" formControlName="firstName" name="firstName" required>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName" name="firstName" required>
             <label class="form-control-placeholder" for="firstName">Podaj imię*</label>
             <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="form-error-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
             </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="lastName" [(ngModel)]="patient.lastName" formControlName="lastName" name="lastName" required>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" name="lastName" required>
             <label class="form-control-placeholder" for="lastName">Podaj nazwisko*</label>
             <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="form-error-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
@@ -31,14 +28,14 @@
         </ng-template>
         <ng-template ngbSlide>
           <div class="form-group mt-2">
-            <input type="text" class="form-control" id="city" [(ngModel)]="patient.city" formControlName="city" name="city" required>
+            <input type="text" class="form-control" id="city" formControlName="city" name="city" required>
             <label class="form-control-placeholder" for="city">Podaj miasto*</label>
             <div *ngIf="city.invalid && (city.dirty || city.touched)" class="form-error-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
             </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="street" [(ngModel)]="patient.street" formControlName="street" name="street" required>
+            <input type="text" class="form-control" id="street" formControlName="street" name="street" required>
             <label class="form-control-placeholder" for="street">Podaj ulicę*</label>
             <div *ngIf="street.invalid && (street.dirty || street.touched)" class="form-error-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
@@ -46,14 +43,14 @@
           </div>
           <div class="form-group form-row">
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="houseNr" [(ngModel)]="patient.houseNr" formControlName="houseNr" name="houseNr" required>
+              <input type="text" class="form-control" id="houseNr" formControlName="houseNr" name="houseNr" required>
               <label class="form-control-placeholder" for="houseNr">Podaj numer domu*</label>
               <div *ngIf="houseNr.invalid && (houseNr.dirty || houseNr.touched)" class="form-error-box text-right">
                 <small class="form-error">To pole jest wymagane.</small>
               </div>
             </div>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="postalCode" [(ngModel)]="patient.postalCode" formControlName="postalCode" name="postalCode" required>
+              <input type="text" class="form-control" id="postalCode" formControlName="postalCode" name="postalCode" required>
               <label class="form-control-placeholder" for="postalCode">Podaj kod pocztowy*</label>
               <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="form-error-box text-right">
                 <small class="form-error">To pole jest wymagane.</small>
@@ -63,7 +60,7 @@
         </ng-template>
         <ng-template ngbSlide>
           <div class="form-group mt-2">
-            <input type="password" class="form-control" id="password" [(ngModel)]="patient.password" formControlName="password" name="password" required>
+            <input type="password" class="form-control" id="password" formControlName="password" name="password" required>
             <label class="form-control-placeholder" for="password">Podaj hasło (minimum 8 znaków)*</label>
             <div *ngIf="password.invalid && (password.dirty || password.touched)" class="form-error-box text-right">
               <small *ngIf="password.errors.required" class="form-error">To pole jest wymagane.</small>
@@ -71,28 +68,27 @@
             </div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="repeatedPassword" [(ngModel)]="patient.repeatedPassword" formControlName="repeatedPassword" name="repeatedPassword" required>
+            <input type="password" class="form-control" id="repeatedPassword" formControlName="repeatedPassword" name="repeatedPassword" required>
             <label class="form-control-placeholder" for="repeatedPassword">Powtórz hasło*</label>
-            <div *ngIf="repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched)" class="form-error-box text-right">
-              <small *ngIf="repeatedPassword.errors.required" class="form-error">To pole jest wymagane.</small>
-              <small *ngIf="repeatedPassword.errors.sameAsValidator" class="form-error">Hasła różnią się.</small>
+            <div *ngIf="!password.invalid && (repeatedPassword.dirty || repeatedPassword.touched)" class="form-error-box text-right">
+              <small *ngIf="registerForm.errors?.passwordMatch" class="form-error">Hasła różnią się.</small>
             </div>
           </div>
         </ng-template>
         <ng-template ngbSlide>
           <div class="form-group mt-2">
-            <input type="text" class="form-control" id="email" [(ngModel)]="patient.email" formControlName="email" name="email" required>
+            <input type="text" class="form-control" id="email" formControlName="email" name="email" required>
             <label class="form-control-placeholder" for="email">Podaj adres email</label>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-error-box text-right">
               <small class="form-error">Adres email nie jest poprawny.</small>
             </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="phoneNr" [(ngModel)]="patient.phoneNr" formControlName="phoneNr" name="phoneNr" required>
+            <input type="text" class="form-control" id="phoneNr" formControlName="phoneNr" name="phoneNr" required>
             <label class="form-control-placeholder" for="phoneNr">Podaj numer telefonu</label>
           </div>
           <div class="form-check pb-3">
-            <input class="form-check-input" type="checkbox" id="approval" [(ngModel)]="patient.approval" name="approval" formControlName="approval" >
+            <input class="form-check-input" type="checkbox" id="approval" name="approval" formControlName="approval" >
             <label class="form-check-label" for="approval">
               *Wyrażam zgodę na przetwarzanie moich danych osobowych w celach koniecznych do funkcjonowania serwisu.
             </label>
@@ -102,14 +98,14 @@
       <!-- Control panel -->
       <div class="row">
         <div class="col-5 text-left">
-          <button class="btn btn-secondary" *ngIf="this.currentId != 1" (click)="this.prev()">Cofnij</button>
+          <button class="btn btn-secondary" type="button" *ngIf="this.currentId != 1" (click)="this.prev()">Cofnij</button>
         </div>
         <div class="col-2 text-center">
           {{this.currentId}} / {{this.maxId}}
         </div>
         <div class="col-5 text-right">
-          <button class="btn btn-secondary" *ngIf="this.currentId != this.maxId" (click)="this.next()" [disabled]="!canGoFurther()">Dalej</button>
-          <button class="btn btn-primary" *ngIf="this.currentId == this.maxId" [disabled]="!canSubmit()">Wyślij</button>
+          <button class="btn btn-secondary" type="button" *ngIf="this.currentId != this.maxId" (click)="this.next()" [disabled]="!canGoFurther()">Dalej</button>
+          <button class="btn btn-primary" type="submit" *ngIf="this.currentId == this.maxId" [disabled]="!canSubmit()">Wyślij</button>
         </div>
       </div>
     </form>

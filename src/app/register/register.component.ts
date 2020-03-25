@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {NgbCarousel} from '@ng-bootstrap/ng-bootstrap';
 import {Patient} from '../model/patient';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {sameAsValidator} from '../validators/sameAsValidator';
+import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +14,11 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   currentId = 1;
   readonly maxId = 4;
   patient: Patient;
-
+  passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+    const password = control.get('password');
+    const repeatedPassword = control.get('repeatedPassword');
+    return password.value !== repeatedPassword.value ? { 'passwordMatch': true } : null;
+  };
   constructor() {
     this.patient = new Patient();
   }
@@ -54,8 +57,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         Validators.minLength(8)
       ]),
       repeatedPassword: new FormControl(this.patient.repeatedPassword, [
-        Validators.required,
-        sameAsValidator(this.patient.password)
       ]),
       email: new FormControl(this.patient.email, [
         Validators.email
@@ -64,7 +65,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       approval: new FormControl(this.patient.approval, [
         Validators.requiredTrue
       ])
-    });
+    }, {validators : this.passwordMatchValidator});
   }
 
   ngAfterViewInit(): void {
@@ -86,7 +87,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       return false;
     } else if (this.currentId === 2 && (this.city.invalid || this.street.invalid || this.houseNr.invalid || this.postalCode.invalid)) {
       return false;
-    } else if (this.currentId === 3 && (this.password.invalid || this.repeatedPassword.invalid)) {
+    } else if (this.currentId === 3 && (this.password.invalid || this.registerForm.errors?.passwordMatch)) {
       return false;
     } else {
       return true;
@@ -94,10 +95,13 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
 
   canSubmit(): boolean {
-    if (this.currentId === 3 && this.approval.invalid) {
+    if (this.currentId === 4 && this.approval.invalid) {
       return false;
     }
     return true;
+  }
+  onSubmit() {
+    console.log(this.registerForm.value);
   }
   get diagnostic() {
     return JSON.stringify(this.patient);
