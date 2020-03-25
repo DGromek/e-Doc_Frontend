@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {NgbCarousel} from '@ng-bootstrap/ng-bootstrap';
 import {Patient} from '../model/patient';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {sameAsValidator} from '../validators/sameAsValidator';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   @ViewChild('carousel', {static: true}) carousel: NgbCarousel;
   registerForm: FormGroup;
   currentId = 1;
-  readonly maxId = 3;
+  readonly maxId = 4;
   patient: Patient;
 
   constructor() {
@@ -48,11 +49,19 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         Validators.required,
         Validators.pattern('\\d{2}-\\d{3}')
       ]),
+      password: new FormControl(this.patient.password, [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
+      repeatedPassword: new FormControl(this.patient.repeatedPassword, [
+        Validators.required,
+        sameAsValidator(this.patient.password)
+      ]),
       email: new FormControl(this.patient.email, [
         Validators.email
       ]),
-      phoneNr : new FormControl(this.patient.phoneNr),
-      approval : new FormControl(this.patient.approval, [
+      phoneNr: new FormControl(this.patient.phoneNr),
+      approval: new FormControl(this.patient.approval, [
         Validators.requiredTrue
       ])
     });
@@ -77,22 +86,22 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       return false;
     } else if (this.currentId === 2 && (this.city.invalid || this.street.invalid || this.houseNr.invalid || this.postalCode.invalid)) {
       return false;
+    } else if (this.currentId === 3 && (this.password.invalid || this.repeatedPassword.invalid)) {
+      return false;
     } else {
       return true;
     }
   }
 
-  canSend(): boolean {
+  canSubmit(): boolean {
     if (this.currentId === 3 && this.approval.invalid) {
       return false;
     }
     return true;
   }
-
   get diagnostic() {
     return JSON.stringify(this.patient);
   }
-
   get pesel() {
     return this.registerForm.get('pesel');
   }
@@ -121,6 +130,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     return this.registerForm.get('postalCode');
   }
 
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get repeatedPassword() {
+    return this.registerForm.get('repeatedPassword');
+  }
+
   get email() {
     return this.registerForm.get('email');
   }
@@ -128,4 +145,5 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   get approval() {
     return this.registerForm.get('approval');
   }
+
 }

@@ -63,6 +63,24 @@
         </ng-template>
         <ng-template ngbSlide>
           <div class="form-group mt-2">
+            <input type="password" class="form-control" id="password" [(ngModel)]="patient.password" formControlName="password" name="password" required>
+            <label class="form-control-placeholder" for="password">Podaj hasło (minimum 8 znaków)*</label>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="form-error-box text-right">
+              <small *ngIf="password.errors.required" class="form-error">To pole jest wymagane.</small>
+              <small *ngIf="password.errors.minlength" class="form-error">Hasło jest za krótkie.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="repeatedPassword" [(ngModel)]="patient.repeatedPassword" formControlName="repeatedPassword" name="repeatedPassword" required>
+            <label class="form-control-placeholder" for="repeatedPassword">Powtórz hasło*</label>
+            <div *ngIf="repeatedPassword.invalid && (repeatedPassword.dirty || repeatedPassword.touched)" class="form-error-box text-right">
+              <small *ngIf="repeatedPassword.errors.required" class="form-error">To pole jest wymagane.</small>
+              <small *ngIf="repeatedPassword.errors.sameAsValidator" class="form-error">Hasła różnią się.</small>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="form-group mt-2">
             <input type="text" class="form-control" id="email" [(ngModel)]="patient.email" formControlName="email" name="email" required>
             <label class="form-control-placeholder" for="email">Podaj adres email</label>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-error-box text-right">
@@ -91,7 +109,7 @@
         </div>
         <div class="col-5 text-right">
           <button class="btn btn-secondary" *ngIf="this.currentId != this.maxId" (click)="this.next()" [disabled]="!canGoFurther()">Dalej</button>
-          <button class="btn btn-primary" *ngIf="this.currentId == this.maxId" [disabled]="!canSend()">Wyślij</button>
+          <button class="btn btn-primary" *ngIf="this.currentId == this.maxId" [disabled]="!canSubmit()">Wyślij</button>
         </div>
       </div>
     </form>
