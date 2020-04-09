@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {NgbCarousel} from '@ng-bootstrap/ng-bootstrap';
 import {Patient} from '../model/patient';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {PatientService} from '../services/patient.service';
 
 @Component({
   selector: 'app-register',
@@ -14,13 +15,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   currentId = 1;
   readonly maxId = 4;
   patient: Patient;
+  patientService: PatientService;
   passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const password = control.get('password');
     const repeatedPassword = control.get('repeatedPassword');
     return password.value !== repeatedPassword.value ? { 'passwordMatch': true } : null;
   };
-  constructor() {
+  constructor(patientService: PatientService) {
     this.patient = new Patient();
+    this.patientService = patientService;
   }
 
   ngOnInit(): void {
@@ -70,6 +73,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // this.maxId = this.carousel.slides.length; Makes application laggy
+    this.patientService.getPatients();
   }
 
   next(): void {
@@ -101,7 +105,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     return true;
   }
   onSubmit() {
-    console.log(this.registerForm.value);
+    this.patientService.addPatient(this.registerForm.value);
   }
   get diagnostic() {
     return JSON.stringify(this.patient);
