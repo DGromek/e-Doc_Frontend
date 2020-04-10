@@ -7,21 +7,21 @@
           <div class="form-group mt-2">
             <input type="text" class="form-control" id="pesel" formControlName="pesel" name="pesel" required>
             <label class="form-control-placeholder" for="pesel">Podaj numer PESEL*</label>
-            <div *ngIf="pesel.invalid && (pesel.dirty || pesel.touched)" class="form-error-box text-right">
+            <div *ngIf="pesel.invalid && (pesel.dirty || pesel.touched)" class="form-label-box text-right">
               <small class="form-error">Podaj poprawny numer PESEL.</small>
             </div>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="firstName" formControlName="firstName" name="firstName" required>
             <label class="form-control-placeholder" for="firstName">Podaj imię*</label>
-            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="form-error-box text-right">
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="form-label-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
             </div>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="lastName" formControlName="lastName" name="lastName" required>
             <label class="form-control-placeholder" for="lastName">Podaj nazwisko*</label>
-            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="form-error-box text-right">
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="form-label-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
             </div>
           </div>
@@ -30,14 +30,14 @@
           <div class="form-group mt-2">
             <input type="text" class="form-control" id="city" formControlName="city" name="city" required>
             <label class="form-control-placeholder" for="city">Podaj miasto*</label>
-            <div *ngIf="city.invalid && (city.dirty || city.touched)" class="form-error-box text-right">
+            <div *ngIf="city.invalid && (city.dirty || city.touched)" class="form-label-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
             </div>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="street" formControlName="street" name="street" required>
             <label class="form-control-placeholder" for="street">Podaj ulicę*</label>
-            <div *ngIf="street.invalid && (street.dirty || street.touched)" class="form-error-box text-right">
+            <div *ngIf="street.invalid && (street.dirty || street.touched)" class="form-label-box text-right">
               <small class="form-error">To pole jest wymagane.</small>
             </div>
           </div>
@@ -45,14 +45,14 @@
             <div class="col-sm-6">
               <input type="text" class="form-control" id="houseNr" formControlName="houseNr" name="houseNr" required>
               <label class="form-control-placeholder" for="houseNr">Podaj numer domu*</label>
-              <div *ngIf="houseNr.invalid && (houseNr.dirty || houseNr.touched)" class="form-error-box text-right">
+              <div *ngIf="houseNr.invalid && (houseNr.dirty || houseNr.touched)" class="form-label-box text-right">
                 <small class="form-error">To pole jest wymagane.</small>
               </div>
             </div>
             <div class="col-sm-6">
               <input type="text" class="form-control" id="postalCode" formControlName="postalCode" name="postalCode" required>
               <label class="form-control-placeholder" for="postalCode">Podaj kod pocztowy*</label>
-              <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="form-error-box text-right">
+              <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)" class="form-label-box text-right">
                 <small class="form-error">To pole jest wymagane.</small>
               </div>
             </div>
@@ -62,7 +62,7 @@
           <div class="form-group mt-2">
             <input type="password" class="form-control" id="password" formControlName="password" name="password" required>
             <label class="form-control-placeholder" for="password">Podaj hasło (minimum 8 znaków)*</label>
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="form-error-box text-right">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="form-label-box text-right">
               <small *ngIf="password.errors.required" class="form-error">To pole jest wymagane.</small>
               <small *ngIf="password.errors.minlength" class="form-error">Hasło jest za krótkie.</small>
             </div>
@@ -70,7 +70,7 @@
           <div class="form-group">
             <input type="password" class="form-control" id="repeatedPassword" formControlName="repeatedPassword" name="repeatedPassword" required>
             <label class="form-control-placeholder" for="repeatedPassword">Powtórz hasło*</label>
-            <div *ngIf="!password.invalid && (repeatedPassword.dirty || repeatedPassword.touched)" class="form-error-box text-right">
+            <div *ngIf="!password.invalid && (repeatedPassword.dirty || repeatedPassword.touched)" class="form-label-box text-right">
               <small *ngIf="registerForm.errors?.passwordMatch" class="form-error">Hasła różnią się.</small>
             </div>
           </div>
@@ -79,7 +79,7 @@
           <div class="form-group mt-2">
             <input type="text" class="form-control" id="email" formControlName="email" name="email" required>
             <label class="form-control-placeholder" for="email">Podaj adres email</label>
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-error-box text-right">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-label-box text-right">
               <small class="form-error">Adres email nie jest poprawny.</small>
             </div>
           </div>

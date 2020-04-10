@@ -1,0 +1,6 @@
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  transform: translate(-50px, -33px);
+  opacity: 1;
+}

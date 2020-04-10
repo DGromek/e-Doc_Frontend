@@ -5,9 +5,10 @@
       <div class="form-group">
         <div class="input-group-prepend">
           <div class="input-group-text px-3">
-            <fa-icon [icon]="faEnvelope"></fa-icon>
+            <fa-icon [icon]="faUser"></fa-icon>
           </div>
-          <input class="form-control" name="email" placeholder="Podaj adres email">
+          <input type="password" class="form-control" id="pesel" name="pesel" required>
+          <label class="form-control-placeholder" for="pesel">Podaj numer PESEL</label>
         </div>
 
       </div>
@@ -16,13 +17,14 @@
           <div class="input-group-text px-3">
             <fa-icon [icon]="faLock"></fa-icon>
           </div>
-          <input type="password" class="form-control" name="password" placeholder="Podaj hasło">
+          <input type="password" class="form-control" id="password" name="password" required>
+          <label class="form-control-placeholder" for="password">Podaj hasło</label>
         </div>
-        <div class="text-right">
+        <div class="text-right form-label-box">
           <small><a href="#">Zapomniałeś hasła?</a></small>
         </div>
       </div>
-      <button class="btn btn-secondary btn-block">Wyślij</button>
+      <button class="btn btn-secondary btn-block mt-4">Wyślij</button>
     </form>
   </div>
 </div>

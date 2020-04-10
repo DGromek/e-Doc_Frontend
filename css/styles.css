@@ -68,6 +68,10 @@ body {
   margin-bottom: 0;
 }
 
+.input-group-text {
+  margin-bottom: 24px;
+}
+
 @media only screen and (max-width: 575px)  {
   .form-row .col-sm-6 {
     padding: 8px 0;
@@ -115,6 +119,10 @@ body {
   position: relative;
 }
 
+.input-group-prepend .form-control-placeholder {
+  padding: 23px 0 0 53px;
+}
+
 .form-control-placeholder {
   position: absolute;
   top: 0;
@@ -135,7 +143,7 @@ body {
   opacity: 1;
 }
 
-.form-error-box {
+.form-label-box {
   margin-top: -25px;
 }
 
