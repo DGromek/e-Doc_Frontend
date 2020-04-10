@@ -16,6 +16,14 @@ import { RegisterComponent } from './register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PatientService} from './services/patient.service';
 
+const appRoutes: Routes = [
+  { path: 'register', component: RegisterComponent },
+  { path: 'login',      component: LoginComponent },
+  { path: '',
+    redirectTo: '/register',
+    pathMatch: 'full'
+  }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +33,7 @@ import {PatientService} from './services/patient.service';
     RegisterComponent,
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
