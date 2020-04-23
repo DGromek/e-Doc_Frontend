@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {NgbCarousel} from '@ng-bootstrap/ng-bootstrap';
-import {Patient} from '../model/patient';
+import {Patient} from '../model/Patient';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {PatientService} from '../services/patient.service';
 
@@ -106,9 +106,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
   onSubmit() {
     this.patientService.addPatient(this.registerForm.value);
-  }
-  get diagnostic() {
-    return JSON.stringify(this.patient);
   }
   get pesel() {
     return this.registerForm.get('pesel');

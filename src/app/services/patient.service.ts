@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Patient} from '../model/patient';
+import {Patient} from '../model/Patient';
 import {AppComponent} from '../app.component';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
 import {PatientDTO} from '../model/PatientDTO';
+import {Credintials} from '../model/Credintials';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +11,20 @@ import {PatientDTO} from '../model/PatientDTO';
 export class PatientService {
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
+      'Content-Type': 'application/json',
       'Authorization': 'my-auth-token',
       'responseType': 'json'
     })
   };
-  constructor(private http: HttpClient ) { }
+
+  constructor(private http: HttpClient) {
+  }
 
   addPatient(patient: Patient) {
-    console.log("We are adding patient.");
+    console.log('We are adding patient.');
     const patientDTO = new PatientDTO(patient);
     console.log(patientDTO);
-    this.http.post<PatientDTO>(AppComponent.apiUrl + '/patient', patientDTO , this.httpOptions)
+    this.http.post<PatientDTO>(AppComponent.apiUrl + '/patient', patientDTO, this.httpOptions)
       .subscribe(data => {
         console.log(data);
       });
@@ -36,5 +37,12 @@ export class PatientService {
         console.log(data);
       });
     console.log('Kończymy');
+  }
+
+  login(credentials: Credintials) {
+    this.http.post(AppComponent.apiUrl + '/patient/login', credentials, this.httpOptions)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }
