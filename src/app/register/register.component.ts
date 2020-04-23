@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.registerForm = new FormGroup({
       pesel: new FormControl(this.patient.pesel, [
         Validators.required,
-        Validators.pattern('\\d{11}')
+        Validators.pattern('\\d{4}[0-3]{1}\\d{1}\\d{5}')
       ]),
       firstName: new FormControl(this.patient.firstName, [
         Validators.required
