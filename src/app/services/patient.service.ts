@@ -4,27 +4,23 @@ import {Patient} from '../model/Patient';
 import {AppComponent} from '../app.component';
 import {PatientDTO} from '../model/PatientDTO';
 import {Credintials} from '../model/Credintials';
+import {Token} from '../model/Token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'my-auth-token',
-      'responseType': 'json'
-    })
-  };
+  private http: HttpClient
 
-  constructor(private http: HttpClient) {
+  constructor(http: HttpClient) {
+    this.http = http;
   }
 
   addPatient(patient: Patient) {
     console.log('We are adding patient.');
     const patientDTO = new PatientDTO(patient);
     console.log(patientDTO);
-    this.http.post<PatientDTO>(AppComponent.apiUrl + '/patient', patientDTO, this.httpOptions)
+    this.http.post<PatientDTO>(AppComponent.apiUrl + '/patient', patientDTO, AppComponent.headersObject)
       .subscribe(data => {
         console.log(data);
       });
@@ -32,7 +28,7 @@ export class PatientService {
 
   getPatients() {
     console.log('Zaczynamy');
-    this.http.get(AppComponent.apiUrl + '/patient', this.httpOptions)
+    this.http.get(AppComponent.apiUrl + '/patient', AppComponent.headersObject)
       .subscribe(data => {
         console.log(data);
       });
@@ -40,9 +36,9 @@ export class PatientService {
   }
 
   login(credentials: Credintials) {
-    this.http.post(AppComponent.apiUrl + '/patient/login', credentials, this.httpOptions)
-      .subscribe(data => {
-        console.log(data);
+    this.http.post<Token>(AppComponent.apiUrl + '/patient/login', credentials, AppComponent.headersObject)
+      .subscribe(response => {
+        localStorage.setItem('token', response.token);
       });
   }
 }
