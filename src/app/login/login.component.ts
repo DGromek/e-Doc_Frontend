@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Credintials} from '../model/Credintials';
 import {PatientService} from '../services/patient.service';
 import {catchError} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +14,16 @@ import {catchError} from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   isError: boolean;
-  faUser = faUser;
-  faLock = faLock;
   loginForm: FormGroup;
   credintials: Credintials;
   patientService: PatientService;
+  router: Router;
+  faUser = faUser;
+  faLock = faLock;
 
-
-  constructor(patientService: PatientService) {
+  constructor(patientService: PatientService, router: Router) {
     this.patientService = patientService;
+    this.router = router;
     this.credintials = new Credintials();
     this.isError = false;
   }
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
       data => {
         localStorage.setItem('token', data.token);
         this.isError = false;
+        this.router.navigate(['/dashboard']);
       },
       error => {
         this.isError = true;

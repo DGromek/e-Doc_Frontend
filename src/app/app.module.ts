@@ -16,13 +16,17 @@ import {RegisterComponent} from './register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PatientService} from './services/patient.service';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
+import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'dashboard', component: PatientDashboardComponent},
+  {path: 'home', component: HomeComponent},
   {
     path: '',
-    redirectTo: '/register',
+    redirectTo: '/home',
     pathMatch: 'full'
   }
 ];
@@ -34,6 +38,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     FooterComponent,
     RegisterComponent,
+    PatientDashboardComponent,
+    HomeComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -45,8 +51,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [PatientService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [PatientService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

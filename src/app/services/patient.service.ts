@@ -18,14 +18,11 @@ export class PatientService {
     this.http = http;
   }
 
-  addPatient(patient: Patient) {
+  addPatient(patient: Patient): Observable<Patient> {
     console.log('We are adding patient.');
     const patientDTO = new PatientDTO(patient);
     console.log(patientDTO);
-    this.http.post<PatientDTO>(AppComponent.apiUrl + '/patient', patientDTO, AppComponent.headersObject)
-      .subscribe(data => {
-        console.log(data);
-      });
+    return this.http.post<Patient>(AppComponent.apiUrl + '/patient', patientDTO, AppComponent.headersObject);
   }
 
   getPatients() {

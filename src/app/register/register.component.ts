@@ -105,7 +105,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     return true;
   }
   onSubmit() {
-    this.patientService.addPatient(this.registerForm.value);
+    this.patientService.addPatient(this.registerForm.value).subscribe(data => {
+      console.log(data);
+    });
   }
   get pesel() {
     return this.registerForm.get('pesel');
