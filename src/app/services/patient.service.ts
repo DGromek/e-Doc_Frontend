@@ -1,16 +1,18 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Patient} from '../model/Patient';
 import {AppComponent} from '../app.component';
 import {PatientDTO} from '../model/PatientDTO';
 import {Credintials} from '../model/Credintials';
 import {Token} from '../model/Token';
+import {catchError} from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
-  private http: HttpClient
+  private http: HttpClient;
 
   constructor(http: HttpClient) {
     this.http = http;
@@ -35,10 +37,7 @@ export class PatientService {
     console.log('Kończymy');
   }
 
-  login(credentials: Credintials) {
-    this.http.post<Token>(AppComponent.apiUrl + '/patient/login', credentials, AppComponent.headersObject)
-      .subscribe(response => {
-        localStorage.setItem('token', response.token);
-      });
+  login(credentials: Credintials): Observable<Token> {
+    return this.http.post<Token>(AppComponent.apiUrl + '/patient/login', credentials, AppComponent.headersObject)
   }
 }

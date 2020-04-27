@@ -1,6 +1,9 @@
 <div class="container">
   <div class="col-10 col-md-8 col-lg-6 mx-auto shadow rounded bg-light p-5 m-5">
     <h4 class="text-center pb-3">Zaloguj się</h4>
+    <div class="alert alert-danger text-center" role="alert" *ngIf="isError">
+      Wprowadzony numer PESEL lub hasło jest niepoprawne.
+    </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <div class="input-group-prepend">
