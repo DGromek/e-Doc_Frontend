@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgbCarousel} from '@ng-bootstrap/ng-bootstrap';
 import {Patient} from '../model/Patient';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
@@ -9,7 +9,7 @@ import {PatientService} from '../services/patient.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements OnInit {
   @ViewChild('carousel', {static: true}) carousel: NgbCarousel;
   registerForm: FormGroup;
   currentId = 1;
@@ -71,11 +71,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     }, {validators : this.passwordMatchValidator});
   }
 
-  ngAfterViewInit(): void {
-    // this.maxId = this.carousel.slides.length; Makes application laggy
-    this.patientService.getPatients();
-  }
-
   next(): void {
     this.currentId++;
     this.carousel.next();
@@ -105,9 +100,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     return true;
   }
   onSubmit() {
-    this.patientService.addPatient(this.registerForm.value).subscribe(data => {
-      console.log(data);
-    });
+    this.patientService.addPatient(this.registerForm.value).subscribe();
   }
   get pesel() {
     return this.registerForm.get('pesel');
