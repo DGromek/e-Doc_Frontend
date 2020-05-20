@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AppointmentService} from '../services/appointment.service';
+import {Appointment} from '../model/Appointment';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient-dashboard.component.css']
 })
 export class PatientDashboardComponent implements OnInit {
-
-  constructor() { }
+  appointmentService: AppointmentService;
+  appointments$: Observable<Appointment[]>;
+  constructor(appointmentService: AppointmentService) {
+    this.appointmentService = appointmentService;
+  }
 
   ngOnInit(): void {
+    this.appointments$ = this.appointmentService.getAppointments();
   }
 
 }
