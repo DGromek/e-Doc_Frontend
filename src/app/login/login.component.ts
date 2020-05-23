@@ -1,10 +1,9 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {faUser, faLock} from '@fortawesome/free-solid-svg-icons';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Credintials} from '../model/Credintials';
 import {PatientService} from '../services/patient.service';
-import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 @Component({
