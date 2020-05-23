@@ -1,0 +1,80 @@
+<div class="container">
+  <!-- Filter bar -->
+  <nav class="py-2">
+    <form>
+
+      <!-- Date picker -->
+      <div class="row btn-toolbar d-flex justify-content-center" role="toolbar">
+        <div class="col-sm-4 col-lg-2 mt-3">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sorting -->
+        <div class="btn-group col-sm-4 col-lg-2 mt-3">
+          <select class="form-control">
+            <option>Sortowanie</option>
+          </select>
+        </div>
+
+        <!-- Profession picker -->
+        <div class="btn-group col-sm-4 col-lg-2 mt-3">
+          <select class="form-control">
+            <option>Specjalizacja</option>
+          </select>
+        </div>
+
+        <!-- Name Filter -->
+        <div class="col-sm-8 col-lg-4 mt-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa-icon [icon]="faSearch"></fa-icon>
+              </span>
+            </div>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+
+        <!-- Filtering button -->
+        <div class="col-sm-4 col-lg-2 text-center mt-3">
+          <div class="btn-group btn-block">
+            <button class="btn btn-success filter-btn">Filtruj!</button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </nav>
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8">
+
+      <div class="row border rounded-lg bg-light p-1 my-3">
+        <div class="col-sm-4 text-center m-auto p-1 d-none d-sm-block">
+          <img src="https://via.placeholder.com/340x225" class="img-fluid rounded">
+        </div>
+        <div class="col-12 col-sm-8 p-3">
+          <div class="border-bottom mb-3 pb-2">
+            <h3 class="mb-0">Centrum zdrowia madki i bombelka</h3>
+            <span class="text-muted">Łódź - ul Jana Pawła II 21/37</span><br>
+          </div>
+          <span class="pill">Internista</span>
+          <span class="pill">Ginekolog</span>
+          <span class="pill">Położna</span>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-lg-2"></div>
+  </div>
+</div>
