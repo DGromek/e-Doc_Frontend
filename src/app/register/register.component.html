@@ -98,14 +98,14 @@
       <!-- Control panel -->
       <div class="row">
         <div class="col-5 text-left">
-          <button class="btn btn-secondary" type="button" *ngIf="this.currentId != 1" (click)="this.prev()">Cofnij</button>
+          <button class="btn btn-menu btn-secondary" type="button" *ngIf="this.currentId != 1" (click)="this.prev()">Cofnij</button>
         </div>
         <div class="col-2 text-center">
           {{this.currentId}} / {{this.maxId}}
         </div>
         <div class="col-5 text-right">
-          <button class="btn btn-secondary" type="button" *ngIf="this.currentId != this.maxId" (click)="this.next()" [disabled]="!canGoFurther()">Dalej</button>
-          <button class="btn btn-primary" type="submit" *ngIf="this.currentId == this.maxId" [disabled]="!canSubmit()">Wyślij</button>
+          <button class="btn btn-menu btn-secondary" type="button" *ngIf="this.currentId != this.maxId" (click)="this.next()" [disabled]="!canGoFurther()">Dalej</button>
+          <button class="btn btn-menu btn-primary" type="submit" *ngIf="this.currentId == this.maxId" [disabled]="!canSubmit()">Wyślij</button>
         </div>
       </div>
     </form>

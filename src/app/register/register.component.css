@@ -12,3 +12,39 @@
   }
 }
 
+/* Forms */
+
+.form-control {
+  border-width: 0 0 2px 0;
+  border-radius: 0;
+  padding: 26px 11px;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  padding: 8px 0;
+  margin-bottom: 0;
+}
+
+.input-group-text {
+  margin-bottom: 24px;
+}
+
+@media only screen and (max-width: 575px)  {
+  .form-row .col-sm-6 {
+    padding: 8px 0;
+  }
+
+  .form-row {
+    padding: 0;
+  }
+
+  .form-row .col-sm-6 .form-control-placeholder {
+    padding: 23px 0 0 18px !important;
+  }
+}
+
+.input-group-text {
+  border-width: 0 0 2px 0;
+  border-radius: 0;
+}
