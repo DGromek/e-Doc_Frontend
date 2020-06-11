@@ -1,14 +1,31 @@
-import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import * as jwt_decode from 'jwt-decode';
+import {TTokenDto} from '../model/TTokenDto';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
+  decodedToken: TTokenDto;
+  router: Router;
+
+  constructor(router: Router) {
+    this.router = router;
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.token; // you probably want to store it in localStorage or something
+    const token = localStorage.token;
+
     if (!token) {
       return next.handle(req);
+    }
+
+    this.decodedToken = jwt_decode(token);
+    // Date.now() returns time in milliseconds while jwt token times value are stored in seconds.
+    if (this.decodedToken.exp < Math.round(Date.now() / 1000)) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
     }
 
     const req1 = req.clone({
@@ -17,5 +34,4 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     return next.handle(req1);
   }
-
 }
