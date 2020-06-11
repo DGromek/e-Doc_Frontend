@@ -20,6 +20,7 @@ import {PatientDashboardComponent} from './patient-dashboard/patient-dashboard.c
 import {HomeComponent} from './home/home.component';
 import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
+import { DocBrowserComponent } from './doc-browser/doc-browser.component';
 
 registerLocaleData(localePl);
 
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: PatientDashboardComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'browse', component: DocBrowserComponent},
   {
     path: '',
     redirectTo: '/home',
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     PatientDashboardComponent,
     HomeComponent,
+    DocBrowserComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
