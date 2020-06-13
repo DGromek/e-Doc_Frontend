@@ -1,42 +1,78 @@
 <div class="container">
-  <div *ngIf="clinic$ | async; let clinic" class="border rounded-lg bg-light p-3 m-4">
-    <img src="https://via.placeholder.com/1900x550" class="img-fluid rounded mb-3">
-    <h4 class="mx-3">{{clinic.name}}</h4>
-    <h6 class="mx-3 text-muted">{{clinic.postalCode}} {{clinic.city}},
-      ul.{{clinic.street}} {{clinic.houseNr}} {{clinic.flatNr}}</h6>
 
-    <!-- Filter input -->
-    <div class="d-flex justify-content-center">
-      <form class="form-inline">
-        <div class="input-group">
-          <div class="input-group-prepend">
+  <div class="row">
+    <div class="col-lg-8">
+      <div *ngIf="clinic$ | async; let clinic" class="border rounded-lg bg-light p-3 my-4">
+        <img src="https://via.placeholder.com/1900x550" class="img-fluid rounded mb-3">
+        <h4 class="mx-3">{{clinic.name}}</h4>
+        <h6 class="mx-3 text-muted">{{clinic.postalCode}} {{clinic.city}},
+          ul.{{clinic.street}} {{clinic.houseNr}} {{clinic.flatNr}}</h6>
+
+        <!-- Filter input -->
+        <div class="d-flex justify-content-center m-3">
+          <form class="form-inline">
+            <div class="input-group">
+              <div class="input-group-prepend">
               <span class="input-group-text">
                 <fa-icon [icon]="faSearch"></fa-icon>
               </span>
-          </div>
-          <input type="text" class="form-control">
+              </div>
+              <input type="text" class="form-control">
+            </div>
+          </form>
         </div>
-      </form>
+
+        <!-- Doctors section -->
+        <ng-container *ngFor="let doctor of doctors$ | async">
+          <div class="card my-3 p-4 border shadow bg-light">
+            <div class="row">
+              <div class="col-9">
+                <h5>{{doctor.firstName}} {{doctor.lastName}}</h5>
+                <span class="d-block text-muted">{{doctor.speciality}}</span>
+              </div>
+              <div class="col-3 text-center m-auto">
+                <button class="btn btn-secondary">Zarezerwuj</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
     </div>
 
-    <!-- Doctors section -->
-
-    <ng-container *ngFor="let doctor of doctors$ | async">
-      <div class="card my-3 p-4 border shadow bg-light">
-        <div class="row">
-          <div class="col-10">
-            <h5>{{doctor.firstName}} {{doctor.lastName}}</h5>
-            <span class="d-block text-muted">{{doctor.speciality}}</span>
-          </div>
-          <div class="col-2 text-center m-auto">
-            <button class="btn btn-secondary">Zarezerwuj</button>
-          </div>
-        </div>
+    <div class="col-lg-4">
+      <div *ngIf="clinic$ | async; let clinic" class="border rounded-lg bg-light p-3 my-4 text-center">
+        <img src="https://complianz.io/wp-content/plugins/complianz-gdpr-premium/assets/images/placeholder-google-maps.jpg" class="img-fluid mb-3">
+        <h6>Numer kontaktowy</h6>
+        <span><fa-icon [icon]="faPhoneAlt" class="mr-1"></fa-icon> 536-919-912<br></span>
+        <hr>
+        <h6>Godziny otwarcia</h6>
+        <table class="table table-sm">
+          <tr>
+            <td>Poniedziałek</td><td>8:00 - 16:00</td>
+          </tr>
+          <tr>
+            <td>Wtorek</td><td>8:00 - 16:00</td>
+          </tr>
+          <tr>
+            <td>Środa</td><td>8:00 - 16:00</td>
+          </tr>
+          <tr>
+            <td>Czwartek</td><td>8:00 - 16:00</td>
+          </tr>
+          <tr>
+            <td>Piątek</td><td>8:00 - 16:00</td>
+          </tr>
+          <tr>
+            <td>Sobota</td><td>8:00 - 16:00</td>
+          </tr>
+          <tr>
+            <td>Niedziela</td><td>8:00 - 16:00</td>
+          </tr>
+        </table>
       </div>
-    </ng-container>
+    </div>
 
   </div>
-
-
 </div>
-h
+

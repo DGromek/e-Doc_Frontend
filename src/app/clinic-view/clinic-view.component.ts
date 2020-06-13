@@ -3,7 +3,7 @@ import {ClinicService} from '../services/clinic.service';
 import {Observable} from 'rxjs';
 import {Clinic} from '../model/Clinic';
 import {ActivatedRoute} from '@angular/router';
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faSearch, faPhoneAlt} from '@fortawesome/free-solid-svg-icons';
 import {DoctorService} from '../services/doctor.service';
 import {Doctor} from '../model/Doctor';
 
@@ -19,6 +19,7 @@ export class ClinicViewComponent implements OnInit {
   clinic$: Observable<Clinic>;
   doctors$: Observable<Doctor[]>;
   faSearch = faSearch;
+  faPhoneAlt = faPhoneAlt;
   constructor(clinicService: ClinicService, doctorService: DoctorService, route: ActivatedRoute) {
     this.clinicService = clinicService;
     this.doctorService = doctorService;
