@@ -21,6 +21,7 @@ import {HomeComponent} from './home/home.component';
 import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
 import { DocBrowserComponent } from './doc-browser/doc-browser.component';
+import { ClinicViewComponent } from './clinic-view/clinic-view.component';
 
 registerLocaleData(localePl);
 
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: PatientDashboardComponent},
   {path: 'home', component: HomeComponent},
   {path: 'browse', component: DocBrowserComponent},
+  {path: 'clinic/:id', component: ClinicViewComponent},
   {
     path: '',
     redirectTo: '/home',
@@ -47,6 +49,7 @@ const appRoutes: Routes = [
     PatientDashboardComponent,
     HomeComponent,
     DocBrowserComponent,
+    ClinicViewComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

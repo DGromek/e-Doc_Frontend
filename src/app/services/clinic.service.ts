@@ -19,4 +19,7 @@ export class ClinicService {
   getClinicSpecialists(id: number): Observable<string[]> {
     return this.http.get<string[]>(AppComponent.apiUrl + '/clinics/specialities/' + id, AppComponent.headersObject);
   }
+  getClinic(id: number): Observable<Clinic> {
+    return this.http.get<Clinic>(AppComponent.apiUrl + '/clinics/' + id, AppComponent.headersObject);
+  }
 }
