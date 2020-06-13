@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   router: Router;
+  public isMenuCollapsed = true;
 
   constructor(router: Router) {
     this.router = router;
