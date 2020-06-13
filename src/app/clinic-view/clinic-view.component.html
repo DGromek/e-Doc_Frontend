@@ -31,7 +31,7 @@
                 <span class="d-block text-muted">{{doctor.speciality}}</span>
               </div>
               <div class="col-3 text-center m-auto">
-                <button class="btn btn-secondary">Zarezerwuj</button>
+                <button class="btn btn-secondary" (click)="openModal(doctor)">Zarezerwuj</button>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
       <div *ngIf="clinic$ | async; let clinic" class="border rounded-lg bg-light p-3 my-4 text-center">
         <img src="https://complianz.io/wp-content/plugins/complianz-gdpr-premium/assets/images/placeholder-google-maps.jpg" class="img-fluid mb-3">
         <h6>Numer kontaktowy</h6>
-        <span><fa-icon [icon]="faPhoneAlt" class="mr-1"></fa-icon> 536-919-912<br></span>
+        <span><fa-icon [icon]="faPhoneAlt" class="mr-1"></fa-icon> {{clinic.phoneNumber}}<br></span>
         <hr>
         <h6>Godziny otwarcia</h6>
         <table class="table table-sm">

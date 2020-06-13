@@ -22,6 +22,7 @@ import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
 import { DocBrowserComponent } from './doc-browser/doc-browser.component';
 import { ClinicViewComponent } from './clinic-view/clinic-view.component';
+import { AppointmentBookingModalComponent } from './appointment-booking-modal/appointment-booking-modal.component';
 
 registerLocaleData(localePl);
 
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
     HomeComponent,
     DocBrowserComponent,
     ClinicViewComponent,
+    AppointmentBookingModalComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

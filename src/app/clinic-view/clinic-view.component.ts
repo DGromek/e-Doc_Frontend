@@ -6,6 +6,8 @@ import {ActivatedRoute} from '@angular/router';
 import {faSearch, faPhoneAlt} from '@fortawesome/free-solid-svg-icons';
 import {DoctorService} from '../services/doctor.service';
 import {Doctor} from '../model/Doctor';
+import {AppointmentBookingModalComponent} from '../appointment-booking-modal/appointment-booking-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-clinic-view',
@@ -15,14 +17,16 @@ import {Doctor} from '../model/Doctor';
 export class ClinicViewComponent implements OnInit {
   clinicService: ClinicService;
   doctorService: DoctorService;
+  modalService: NgbModal;
   route: ActivatedRoute;
   clinic$: Observable<Clinic>;
   doctors$: Observable<Doctor[]>;
   faSearch = faSearch;
   faPhoneAlt = faPhoneAlt;
-  constructor(clinicService: ClinicService, doctorService: DoctorService, route: ActivatedRoute) {
+  constructor(clinicService: ClinicService, doctorService: DoctorService, route: ActivatedRoute, modalService: NgbModal) {
     this.clinicService = clinicService;
     this.doctorService = doctorService;
+    this.modalService = modalService;
     this.route = route;
   }
 
@@ -36,4 +40,8 @@ export class ClinicViewComponent implements OnInit {
     );
   }
 
+  openModal(doctor: Doctor) {
+    const modalRef = this.modalService.open(AppointmentBookingModalComponent);
+    modalRef.componentInstance.doctor = doctor;
+  }
 }
