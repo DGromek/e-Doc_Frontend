@@ -1,8 +1,8 @@
 <div class="container">
   <div *ngIf="clinic$ | async; let clinic" class="border rounded-lg bg-light p-3 m-4">
-    <img src="https://via.placeholder.com/1900x350" class="img-fluid rounded mb-3">
-    <h4>{{clinic.name}}</h4>
-    <h6 class="text-muted">{{clinic.postalCode}} {{clinic.city}},
+    <img src="https://via.placeholder.com/1900x550" class="img-fluid rounded mb-3">
+    <h4 class="mx-3">{{clinic.name}}</h4>
+    <h6 class="mx-3 text-muted">{{clinic.postalCode}} {{clinic.city}},
       ul.{{clinic.street}} {{clinic.houseNr}} {{clinic.flatNr}}</h6>
 
     <!-- Filter input -->
@@ -20,60 +20,23 @@
     </div>
 
     <!-- Doctors section -->
-    <div class="card-deck">
 
-      <div class="card my-3 p-3 border shadow bg-light">
+    <ng-container *ngFor="let doctor of doctors$ | async">
+      <div class="card my-3 p-4 border shadow bg-light">
         <div class="row">
-          <div class="col-8">
-            <h5>Dr. Jan Kowalski</h5>
-            <span class="d-block text-muted">Internista</span>
+          <div class="col-10">
+            <h5>{{doctor.firstName}} {{doctor.lastName}}</h5>
+            <span class="d-block text-muted">{{doctor.speciality}}</span>
           </div>
-          <div class="col-4 text-center m-auto">
+          <div class="col-2 text-center m-auto">
             <button class="btn btn-secondary">Zarezerwuj</button>
           </div>
         </div>
       </div>
+    </ng-container>
 
-      <div class="card my-3 p-3 border shadow bg-light">
-        <div class="row">
-          <div class="col-8">
-            <h5>Dr. Jan Kowalski</h5>
-            <span class="d-block text-muted">Internista</span>
-          </div>
-          <div class="col-4 text-center m-auto">
-            <button class="btn btn-secondary">Zarezerwuj</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-100 d-none d-sm-block d-sm-none"><!-- wrap every 2 on sm--></div>
-      <div class="w-100 d-none d-md-block d-md-none"><!-- wrap every 2 on md--></div>
-      <div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 2 on lg--></div>
-      <div class="w-100 d-none d-md-block d-xl-none"><!-- wrap every 2 on xl--></div>
-
-      <div class="card my-3 p-3 border shadow bg-light">
-        <div class="row">
-          <div class="col-8">
-            <h5>Dr. Jan Kowalski</h5>
-            <span class="d-block text-muted">Internista</span>
-          </div>
-          <div class="col-4 text-center m-auto">
-            <button class="btn btn-secondary">Zarezerwuj</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card my-3 p-3 border shadow bg-light">
-        <div class="row">
-          <div class="col-8">
-            <h5>Dr. Jan Kowalski</h5>
-            <span class="d-block text-muted">Internista</span>
-          </div>
-          <div class="col-4 text-center m-auto">
-            <button class="btn btn-secondary">Zarezerwuj</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </div>
+
+
+</div>
+h
