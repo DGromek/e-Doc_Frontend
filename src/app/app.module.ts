@@ -20,7 +20,7 @@ import {PatientDashboardComponent} from './patient/patient-dashboard/patient-das
 import {HomeComponent} from './guest/home/home.component';
 import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
-import { DocBrowserComponent } from './patient/doc-browser/doc-browser.component';
+import { ClinicsBrowserComponent } from './patient/clinics-browser/clinics-browser.component';
 import { ClinicViewComponent } from './patient/clinic-view/clinic-view.component';
 import { AppointmentBookingModalComponent } from './patient/appointment-booking-modal/appointment-booking-modal.component';
 
@@ -31,8 +31,8 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: PatientDashboardComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'browse', component: DocBrowserComponent},
-  {path: 'clinic/:id', component: ClinicViewComponent},
+  {path: 'clinics', component: ClinicsBrowserComponent},
+  {path: 'clinics/:id', component: ClinicViewComponent},
   {
     path: '',
     redirectTo: '/home',
@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     PatientDashboardComponent,
     HomeComponent,
-    DocBrowserComponent,
+    ClinicsBrowserComponent,
     ClinicViewComponent,
     AppointmentBookingModalComponent,
   ],

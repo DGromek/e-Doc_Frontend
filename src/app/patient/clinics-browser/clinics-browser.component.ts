@@ -8,10 +8,10 @@ import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-doc-browser',
-  templateUrl: './doc-browser.component.html',
-  styleUrls: ['./doc-browser.component.css']
+  templateUrl: './clinics-browser.component.html',
+  styleUrls: ['./clinics-browser.component.css']
 })
-export class DocBrowserComponent implements OnInit {
+export class ClinicsBrowserComponent implements OnInit {
   faSearch = faSearch;
   faCalendarAlt = faCalendarAlt;
   model: NgbDateStruct;

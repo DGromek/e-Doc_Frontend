@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocBrowserComponent } from './doc-browser.component';
+import { ClinicsBrowserComponent } from './clinics-browser.component';
 
 describe('DocBrowserComponent', () => {
-  let component: DocBrowserComponent;
-  let fixture: ComponentFixture<DocBrowserComponent>;
+  let component: ClinicsBrowserComponent;
+  let fixture: ComponentFixture<ClinicsBrowserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocBrowserComponent ]
+      declarations: [ ClinicsBrowserComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocBrowserComponent);
+    fixture = TestBed.createComponent(ClinicsBrowserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
