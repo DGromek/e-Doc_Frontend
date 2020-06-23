@@ -13,3 +13,11 @@ form [class^="col-"],
   padding: 5px 10px;
   margin: 0 5px;
 }
+
+a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+}
