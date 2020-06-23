@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ClinicService} from '../services/clinic.service';
+import {ClinicService} from '../../services/clinic.service';
 import {Observable} from 'rxjs';
-import {Clinic} from '../model/Clinic';
+import {Clinic} from '../../model/Clinic';
 import {ActivatedRoute} from '@angular/router';
 import {faSearch, faPhoneAlt} from '@fortawesome/free-solid-svg-icons';
-import {DoctorService} from '../services/doctor.service';
-import {Doctor} from '../model/Doctor';
+import {DoctorService} from '../../services/doctor.service';
+import {Doctor} from '../../model/Doctor';
 import {AppointmentBookingModalComponent} from '../appointment-booking-modal/appointment-booking-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 

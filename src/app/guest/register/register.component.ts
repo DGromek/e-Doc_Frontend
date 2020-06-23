@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgbCarousel} from '@ng-bootstrap/ng-bootstrap';
-import {Patient} from '../model/Patient';
+import {Patient} from '../../model/Patient';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {PatientService} from '../services/patient.service';
+import {PatientService} from '../../services/patient.service';
 
 @Component({
   selector: 'app-register',

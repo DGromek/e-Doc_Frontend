@@ -7,22 +7,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {LoginComponent} from './login/login.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {FooterComponent} from './footer/footer.component';
+import {LoginComponent} from './guest/login/login.component';
+import {NavbarComponent} from './core/navbar/navbar.component';
+import {FooterComponent} from './core/footer/footer.component';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {RegisterComponent} from './register/register.component';
+import {RegisterComponent} from './guest/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PatientService} from './services/patient.service';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
-import {PatientDashboardComponent} from './patient-dashboard/patient-dashboard.component';
-import {HomeComponent} from './home/home.component';
+import {PatientDashboardComponent} from './patient/patient-dashboard/patient-dashboard.component';
+import {HomeComponent} from './guest/home/home.component';
 import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
-import { DocBrowserComponent } from './doc-browser/doc-browser.component';
-import { ClinicViewComponent } from './clinic-view/clinic-view.component';
-import { AppointmentBookingModalComponent } from './appointment-booking-modal/appointment-booking-modal.component';
+import { DocBrowserComponent } from './patient/doc-browser/doc-browser.component';
+import { ClinicViewComponent } from './patient/clinic-view/clinic-view.component';
+import { AppointmentBookingModalComponent } from './patient/appointment-booking-modal/appointment-booking-modal.component';
 
 registerLocaleData(localePl);
 

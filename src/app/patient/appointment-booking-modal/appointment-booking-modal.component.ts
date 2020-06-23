@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Doctor} from '../model/Doctor';
+import {Doctor} from '../../model/Doctor';
 
 @Component({
   selector: 'app-appointment-booking-modal',
