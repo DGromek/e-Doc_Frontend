@@ -40,8 +40,9 @@ export class ClinicViewComponent implements OnInit {
     );
   }
 
-  openModal(doctor: Doctor) {
+  openModal(doctor: Doctor, clinicId: number) {
     const modalRef = this.modalService.open(AppointmentBookingModalComponent);
     modalRef.componentInstance.doctor = doctor;
+    modalRef.componentInstance.clinicId = clinicId;
   }
 }

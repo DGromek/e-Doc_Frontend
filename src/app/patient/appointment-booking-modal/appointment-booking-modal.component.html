@@ -10,8 +10,10 @@
   <span class="text-muted">{{doctor.speciality}}</span>
   </div>
   <div>
-    <ngb-datepicker></ngb-datepicker>
+    <ngb-datepicker [(ngModel)]="selectedDate" (ngModelChange)="getAvailableTerms(selectedDate, doctor.id, clinicId)" [navigation]="'arrows'"></ngb-datepicker>
   </div>
+  {{selectedDate | json}}
+  <span *ngIf="selectedDate != undefined">{{calendar.getWeekday(selectedDate)}}</span>
   <div class="mt-2">
     <button type="button" class="btn btn-outline-primary btn-sm">08:30</button>
     <button type="button" class="btn btn-outline-primary btn-sm">14:30</button>
