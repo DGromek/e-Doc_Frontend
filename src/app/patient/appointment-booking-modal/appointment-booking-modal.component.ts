@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal, NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {NgbActiveModal, NgbCalendar, NgbDate, NgbDatepicker, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {Doctor} from '../../model/Doctor';
 import {AppointmentService} from '../../services/appointment.service';
 
@@ -8,38 +8,26 @@ import {AppointmentService} from '../../services/appointment.service';
   templateUrl: './appointment-booking-modal.component.html',
   styleUrls: ['./appointment-booking-modal.component.css']
 })
-export class AppointmentBookingModalComponent implements OnInit {
+export class AppointmentBookingModalComponent {
   doctor: Doctor;
+  clinicId: number;
+  appointmentService: AppointmentService;
   activeModal: NgbActiveModal;
   selectedDate: NgbDate;
   calendar: NgbCalendar;
-  appointmentService: AppointmentService;
-  clinicId: number;
+  config: NgbDatepickerConfig;
 
-  constructor(activeModal: NgbActiveModal, calendar: NgbCalendar, scheduleService: AppointmentService) {
+  constructor(activeModal: NgbActiveModal, calendar: NgbCalendar, scheduleService: AppointmentService, config: NgbDatepickerConfig) {
     this.activeModal = activeModal;
     this.calendar = calendar;
     this.appointmentService = scheduleService;
-  }
-
-  ngOnInit(): void {
+    this.config = config;
+    const current = new Date();
+    this.config.minDate = { year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate() };
   }
 
   getAvailableTerms(date: NgbDate, doctorId: number, clinicId: number): void {
     console.log({date, doctorId, clinicId});
     this.appointmentService.getFreeTermsForGivenDate(date, doctorId, clinicId);
-    // this.scheduleService.getFreeTermsForGivenDate(dayOfTheWeek, doctorId, clinicId).pipe(map(
-    //   res => {
-    //     console.log(res);
-    //     console.log(typeof res.endingHour);
-    //     res.startingHour = new Time(res.startingHour[0], res.startingHour[1]);
-    //     res.endingHour = new Time(res.endingHour[0], res.endingHour[1]);
-    //     const result = new Array<Time>();
-    //     let j = 0;
-    //     for (let i = res.startingHour; i.isBefore(res.endingHour); i.addMinutes(30)) {
-    //       result[j++] = i;
-    //     }
-    //     return result;
-    //   })).subscribe(res => console.log(res));
   }
 }
