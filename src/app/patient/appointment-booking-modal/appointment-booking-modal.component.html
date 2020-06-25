@@ -10,19 +10,19 @@
     <span class="text-muted">{{doctor.speciality}}</span>
   </div>
   <div>
-    <ngb-datepicker #datepicker [(ngModel)]="selectedDate"
-                    (ngModelChange)="getAvailableTerms(selectedDate, clinicId, doctor.id)"
+    <ngb-datepicker [(ngModel)]="selectedDate"
+                    (ngModelChange)="getAvailableTerms()"
                     [navigation]="'arrows'"></ngb-datepicker>
   </div>
   {{selectedDate | json}}
   <span *ngIf="selectedDate != undefined">{{calendar.getWeekday(selectedDate)}}</span>
   <div class="mt-2">
-    <button *ngFor="let term of freeTerms$ | async" type="button" class="btn btn-outline-primary btn-sm">
+    <button *ngFor="let term of freeTerms$ | async" type="button" (click)="selectedTerm = term" class="btn btn-outline-primary btn-sm">
       {{term.hours | number: '2.0'}}:{{term.minutes | number: '2.0'}}
     </button>
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-success" (click)="activeModal.close('Close click')">Potwierdź</button>
+  <button type="button" class="btn btn-outline-success" (click)="makeReservation()">Potwierdź</button>
   <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Close click')">Anuluj</button>
 </div>
