@@ -6,23 +6,20 @@
 </div>
 <div class="modal-body text-center">
   <div class="mb-2">
-  <h6 class="mb-0">{{doctor.firstName}} {{doctor.lastName}}</h6>
-  <span class="text-muted">{{doctor.speciality}}</span>
+    <h6 class="mb-0">{{doctor.firstName}} {{doctor.lastName}}</h6>
+    <span class="text-muted">{{doctor.speciality}}</span>
   </div>
   <div>
-    <ngb-datepicker #datepicker [(ngModel)]="selectedDate" (ngModelChange)="getAvailableTerms(selectedDate, doctor.id, clinicId)" [navigation]="'arrows'"></ngb-datepicker>
+    <ngb-datepicker #datepicker [(ngModel)]="selectedDate"
+                    (ngModelChange)="getAvailableTerms(selectedDate, clinicId, doctor.id)"
+                    [navigation]="'arrows'"></ngb-datepicker>
   </div>
   {{selectedDate | json}}
   <span *ngIf="selectedDate != undefined">{{calendar.getWeekday(selectedDate)}}</span>
   <div class="mt-2">
-    <button type="button" class="btn btn-outline-primary btn-sm">08:30</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">14:30</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">15:30</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">16:00</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">16:30</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">17:00</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">17:30</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">17:30</button>
+    <button *ngFor="let term of freeTerms$ | async" type="button" class="btn btn-outline-primary btn-sm">
+      {{term.hours | number: '2.0'}}:{{term.minutes | number: '2.0'}}
+    </button>
   </div>
 </div>
 <div class="modal-footer">
