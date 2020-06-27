@@ -1,28 +1,40 @@
-<div class="modal-header">
-  <h5 class="modal-title">Zarezerwuj wizytę:</h5>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body text-center">
-  <div class="mb-2">
-    <h6 class="mb-0">{{doctor.firstName}} {{doctor.lastName}}</h6>
-    <span class="text-muted">{{doctor.speciality}}</span>
-  </div>
-  <div>
-    <ngb-datepicker [(ngModel)]="selectedDate"
-                    (ngModelChange)="getAvailableTerms()"
-                    [navigation]="'arrows'"></ngb-datepicker>
-  </div>
-  {{selectedDate | json}}
-  <span *ngIf="selectedDate != undefined">{{calendar.getWeekday(selectedDate)}}</span>
-  <div class="mt-2">
-    <button *ngFor="let term of freeTerms$ | async" type="button" (click)="selectedTerm = term" class="btn btn-outline-primary btn-sm">
-      {{term.hours | number: '2.0'}}:{{term.minutes | number: '2.0'}}
+<div [hidden]="isReservationFinished">
+  <div class="modal-header">
+    <h5 class="modal-title">Zarezerwuj wizytę:</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  <div class="modal-body text-center">
+    <div class="mb-2">
+      <h6 class="mb-0">{{doctor.firstName}} {{doctor.lastName}}</h6>
+      <span class="text-muted">{{doctor.speciality}}</span>
+    </div>
+    <div>
+      <ngb-datepicker [(ngModel)]="selectedDate"
+                      (ngModelChange)="getAvailableTerms()"
+                      [navigation]="'arrows'"></ngb-datepicker>
+    </div>
+    <span class="text-muted">Szacowany czas wizyty: 30 minut</span>
+    <div class="mt-2">
+      <button *ngFor="let term of freeTerms$ | async" type="button" (click)="selectTerm($event, term)"
+              class="btn btn-outline-primary btn-sm pill">
+        {{term.hours | number: '2.0'}}:{{term.minutes | number: '2.0'}}
+      </button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success"
+            [disabled]="selectedDate == undefined || selectedTerm == undefined" (click)="makeReservation()">Potwierdź
+    </button>
+    <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Close click')">Anuluj</button>
+  </div>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-success" (click)="makeReservation()">Potwierdź</button>
-  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Close click')">Anuluj</button>
+
+<div [hidden]="!isReservationFinished">
+  <div class="modal-body text-center">
+    <fa-icon [icon]="faCheckCircle" [styles]="{'stroke': 'green', 'color': 'green'}" size="5x"></fa-icon>
+    <h5 class="mt-2"> Twoja rezerwacja została zapisana.</h5>
+    <button type="button" class="btn btn-outline-primary btn-sm btn-block mt-3 mb-2" routerLink="/dashboard" (click)="activeModal.close()">Powrót do tablicy</button>
+  </div>
 </div>
