@@ -1,4 +1,4 @@
-<div class="container p-0">
+<div class="container p-0" [hidden]="isRegistrationFinished">
   <div class="col-12 col-md-8 col-lg-6 mx-auto shadow rounded bg-light p-5 my-5 register-box">
     <h4 class="text-center mb-3">Zarejestruj się</h4>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -112,3 +112,8 @@
   </div>
 </div>
 
+<div [hidden]="!isRegistrationFinished" class="container mx-auto shadow rounded bg-light text-center p-5 my-5">
+  <fa-icon [icon]="faCheckCircle" [styles]="{'stroke': 'green', 'color': 'green'}" size="5x"></fa-icon>
+  <h4 class="mt-2">Rejestracja zakończona powodzeniem.</h4>
+  <h6 class="text-muted">Na Twój adres email powinna zostać wiadomość z linkiem aktywacyjnym.</h6>
+</div>

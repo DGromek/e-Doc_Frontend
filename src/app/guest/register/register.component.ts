@@ -3,6 +3,7 @@ import {NgbCarousel} from '@ng-bootstrap/ng-bootstrap';
 import {Patient} from '../../model/Patient';
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {PatientService} from '../../services/patient.service';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +11,18 @@ import {PatientService} from '../../services/patient.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild('carousel', {static: true}) carousel: NgbCarousel;
-  registerForm: FormGroup;
+  // Data
   currentId = 1;
   readonly maxId = 4;
+  isRegistrationFinished = false;
   patient: Patient;
+  // Components
+  @ViewChild('carousel', {static: true}) carousel: NgbCarousel;
+  registerForm: FormGroup;
+  faCheckCircle = faCheckCircle;
+  // Service
   patientService: PatientService;
+  // Validator
   passwordMatchValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const password = control.get('password');
     const repeatedPassword = control.get('repeatedPassword');
@@ -100,7 +107,7 @@ export class RegisterComponent implements OnInit {
     return true;
   }
   onSubmit() {
-    this.patientService.addPatient(this.registerForm.value).subscribe();
+    this.patientService.addPatient(this.registerForm.value).subscribe(() => this.isRegistrationFinished = true);
   }
   get pesel() {
     return this.registerForm.get('pesel');
