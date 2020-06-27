@@ -5,3 +5,8 @@ h5 {
 .badge {
   font-weight: 500;
 }
+
+.year-fontsize {
+  font-size: 12px;
+  margin-bottom: -3px;
+}
