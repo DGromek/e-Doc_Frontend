@@ -16,4 +16,10 @@ export class DoctorService {
   findAllByClinicId(clinicId: number): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(AppComponent.apiUrl + '/doctors?clinicId=' + clinicId, AppComponent.headersObject);
   }
+
+  findAllByClinicIdAndDoctorSpeciality(clinicId: number, speciality: string) {
+    return this.http.get<Doctor[]>(AppComponent.apiUrl + '/doctors' +
+      '?clinicId=' + clinicId +
+      '&speciality=' + speciality, AppComponent.headersObject);
+  }
 }

@@ -66,9 +66,8 @@
             <h4 class="mb-0"><a href="/clinics/{{clinic.id}}">{{clinic.name}}</a></h4>
             <span class="text-muted">{{clinic.postalCode}} {{clinic.city}} - ul. {{clinic.street}} {{clinic.houseNr}}</span><br>
           </div>
-
           <div *ngFor="let specialty of clinic.specialities" class="d-inline">
-            <button type="button" class="btn btn-outline-primary btn-sm">{{specialty}}</button>
+            <a href="/clinics/{{clinic.id}}?speciality={{specialty}}" class="btn btn-outline-primary btn-sm">{{specialty}}</a>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClinicService} from '../../services/clinic.service';
 import {Observable} from 'rxjs';
 import {Clinic} from '../../model/Clinic';
@@ -23,6 +23,7 @@ export class ClinicViewComponent implements OnInit {
   doctors$: Observable<Doctor[]>;
   faSearch = faSearch;
   faPhoneAlt = faPhoneAlt;
+
   constructor(clinicService: ClinicService, doctorService: DoctorService, route: ActivatedRoute, modalService: NgbModal) {
     this.clinicService = clinicService;
     this.doctorService = doctorService;
@@ -33,8 +34,15 @@ export class ClinicViewComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
-        this.clinic$ = this.clinicService.getClinic(+params.get('id'));
-        this.doctors$ = this.doctorService.findAllByClinicId(+params.get('id'));
+        const clinicId = +params.get('id');
+        const speciality = this.route.snapshot.queryParamMap.get('speciality');
+        console.log(speciality);
+        this.clinic$ = this.clinicService.getClinic(clinicId);
+        if (speciality != null) {
+          this.doctors$ = this.doctorService.findAllByClinicIdAndDoctorSpeciality(clinicId, speciality);
+        } else {
+          this.doctors$ = this.doctorService.findAllByClinicId(clinicId);
+        }
         // this.clinic$.subscribe(res => console.log(res));
       }
     );
