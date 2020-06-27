@@ -6,7 +6,6 @@ import {Observable} from 'rxjs';
 import {Time} from '../../model/Time';
 import {AppointmentDTO} from '../../model/AppointmentDTO';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-appointment-booking-modal',
@@ -22,7 +21,6 @@ export class AppointmentBookingModalComponent {
   isReservationFinished = false;
   // Service
   appointmentService: AppointmentService;
-  router: Router;
   // Components
   activeModal: NgbActiveModal;
   selectedDate: NgbDate;
@@ -31,12 +29,11 @@ export class AppointmentBookingModalComponent {
   // Icon
   faCheckCircle = faCheckCircle;
 
-  constructor(activeModal: NgbActiveModal, calendar: NgbCalendar, scheduleService: AppointmentService, config: NgbDatepickerConfig, router: Router) {
+  constructor(activeModal: NgbActiveModal, calendar: NgbCalendar, scheduleService: AppointmentService, config: NgbDatepickerConfig) {
     this.activeModal = activeModal;
     this.calendar = calendar;
     this.appointmentService = scheduleService;
     this.config = config;
-    this.router = router;
     const current = new Date();
     this.config.minDate = {year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate()};
   }
