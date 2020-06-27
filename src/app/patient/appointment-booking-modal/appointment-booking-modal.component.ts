@@ -39,7 +39,8 @@ export class AppointmentBookingModalComponent {
   }
 
   makeReservation() {
-    const dateOfReservation = new Date(this.selectedDate.year, this.selectedDate.month, this.selectedDate.day,
+    const MONTH_OFFSET = 1; // As TypeScript date is indexing months since 0 not 1 like any other normal language LOL.
+    const dateOfReservation = new Date(this.selectedDate.year, this.selectedDate.month - MONTH_OFFSET, this.selectedDate.day,
       this.selectedTerm.hours, this.selectedTerm.minutes);
     const appointmentDTO = new AppointmentDTO(dateOfReservation, this.clinicId, this.doctor.id);
     this.appointmentService.postAppointment(appointmentDTO).subscribe(res => console.log(res));
