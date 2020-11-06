@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod --env=${ENVIRONMENT}",
+    "postinstall": "ng build --aot --prod --configuration=${ENVIRONMENT}",
     "scss-watch": "node-sass --watch scss -o css",
     "scss-compile": "node-sass scss -o css"
   },
