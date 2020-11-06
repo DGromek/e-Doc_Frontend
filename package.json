@@ -1,13 +1,15 @@
 {
   "name": "e-doc-frontend",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
+    "start-dev": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod --env=${ENVIRONMENT}",
     "scss-watch": "node-sass --watch scss -o css",
     "scss-compile": "node-sass scss -o css"
   },
@@ -32,10 +34,12 @@
     "jwt-decode": "^2.2.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "express": "^4.17.1",
+    "typescript": "~3.7.5"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.2",
+    "@angular-devkit/build-angular": "^0.1002.0",
     "@angular/cli": "~9.0.2",
     "@angular/compiler-cli": "~9.0.1",
     "@angular/language-service": "~9.0.1",
@@ -54,7 +58,6 @@
     "node-sass": "^4.13.1",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
-    "tslint": "~5.18.0",
-    "typescript": "~3.7.5"
+    "tslint": "~5.18.0"
   }
 }
