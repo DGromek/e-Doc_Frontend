@@ -7,6 +7,7 @@ import {map} from 'rxjs/operators';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {Time} from '../model/Time';
 import {AppointmentDTO} from '../model/AppointmentDTO';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +19,18 @@ export class AppointmentService {
     this.http = http;
   }
   getAppointments(): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(AppComponent.apiUrl + '/appointments', AppComponent.headersObject)
+    return this.http.get<Appointment[]>(environment.apiUrl + '/appointments', AppComponent.headersObject)
       .pipe(map(arr => {
         arr.forEach(el => el.dateOfAppointment = new Date(el.dateOfAppointment));
         return arr;
       }));
   }
   postAppointment(appointmentDTO: AppointmentDTO): Observable<Appointment> {
-    return this.http.post<Appointment>(AppComponent.apiUrl + '/appointments', appointmentDTO, AppComponent.headersObject);
+    return this.http.post<Appointment>(environment.apiUrl + '/appointments', appointmentDTO, AppComponent.headersObject);
   }
   getFreeTermsForGivenDate(date: NgbDate, clinicId: number, doctorId: number): Observable<Time[]> {
     const dateStringForUrl = date.year + '-' + date.month + '-' + date.day;
-    return this.http.get<string[]>(AppComponent.apiUrl + '/appointments/free-terms' +
+    return this.http.get<string[]>(environment.apiUrl + '/appointments/free-terms' +
       '?date=' + dateStringForUrl +
       '&clinicId=' + clinicId +
       '&doctorId=' + doctorId, AppComponent.headersObject)

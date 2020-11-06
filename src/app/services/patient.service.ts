@@ -6,6 +6,7 @@ import {PatientDTO} from '../model/PatientDTO';
 import {Credintials} from '../model/Credintials';
 import {Token} from '../model/Token';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,15 @@ export class PatientService {
     console.log('We are adding patient.');
     const patientDTO = new PatientDTO(patient);
     console.log(patientDTO);
-    return this.http.post<Patient>(AppComponent.apiUrl + '/patients', patientDTO, AppComponent.headersObject);
+    return this.http.post<Patient>(environment.apiUrl + '/patients', patientDTO, AppComponent.headersObject);
   }
 
   // Test method, to be deleted in future.
   getPatients(): Observable<Patient[]> {
-    return this.http.get<Patient[]>(AppComponent.apiUrl + '/patients', AppComponent.headersObject);
+    return this.http.get<Patient[]>(environment.apiUrl + '/patients', AppComponent.headersObject);
   }
 
   login(credentials: Credintials): Observable<Token> {
-    return this.http.post<Token>(AppComponent.apiUrl + '/patients/login', credentials, AppComponent.headersObject);
+    return this.http.post<Token>(environment.apiUrl + '/patients/login', credentials, AppComponent.headersObject);
   }
 }

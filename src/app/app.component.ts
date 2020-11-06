@@ -7,7 +7,6 @@ import {HttpHeaders} from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  static apiUrl = 'http://localhost:8080';
   static headersObject = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

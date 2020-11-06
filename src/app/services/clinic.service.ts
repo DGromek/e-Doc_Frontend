@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AppComponent} from '../app.component';
 import {Clinic} from '../model/Clinic';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ export class ClinicService {
     this.http = http;
   }
   getClinics(): Observable<Clinic[]> {
-    return this.http.get<Clinic[]>(AppComponent.apiUrl + '/clinics', AppComponent.headersObject);
+    return this.http.get<Clinic[]>(environment.apiUrl + '/clinics', AppComponent.headersObject);
   }
   getClinicSpecialists(id: number): Observable<string[]> {
-    return this.http.get<string[]>(AppComponent.apiUrl + '/clinics/specialities/' + id, AppComponent.headersObject);
+    return this.http.get<string[]>(environment.apiUrl + '/clinics/specialities/' + id, AppComponent.headersObject);
   }
   getClinic(id: number): Observable<Clinic> {
-    return this.http.get<Clinic>(AppComponent.apiUrl + '/clinics/' + id, AppComponent.headersObject);
+    return this.http.get<Clinic>(environment.apiUrl + '/clinics/' + id, AppComponent.headersObject);
   }
 }
