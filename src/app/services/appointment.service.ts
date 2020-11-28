@@ -29,7 +29,7 @@ export class AppointmentService {
     return this.http.post<Appointment>(environment.apiUrl + '/appointments', appointmentDTO, AppComponent.headersObject);
   }
   getFreeTermsForGivenDate(date: NgbDate, clinicId: number, doctorId: number): Observable<Time[]> {
-    const dateStringForUrl = date.year + '-' + date.month + '-' + date.day;
+    const dateStringForUrl = date.year + '-' + date.month.toString().padStart(2, '0') + '-' + date.day.toString().padStart(2, '0');
     return this.http.get<string[]>(environment.apiUrl + '/appointments/free-terms' +
       '?date=' + dateStringForUrl +
       '&clinicId=' + clinicId +
