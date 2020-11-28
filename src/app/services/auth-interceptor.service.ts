@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 import {TTokenDto} from '../model/TTokenDto';
 import {Router} from '@angular/router';
+import {tap} from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
@@ -32,6 +33,13 @@ export class AuthInterceptorService implements HttpInterceptor {
       headers: req.headers.set('Authorization', `Bearer ${token}`),
     });
 
-    return next.handle(req1);
+    return next.handle(req1).pipe(
+      tap(evt => {
+          if (evt instanceof HttpResponse) {
+            const refreshedToken = evt.headers.get('Refreshed-token');
+            localStorage.setItem('token', refreshedToken);
+          }
+        }
+      ));
   }
 }
