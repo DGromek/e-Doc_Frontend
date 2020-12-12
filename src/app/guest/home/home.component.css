@@ -1,0 +1,15 @@
+.banner {
+  height: 260px;
+  background-image: url("../../../assets/banner.png");
+  background-position: center;
+  object-fit: fill;
+}
+
+.banner-header {
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  font-size: 1.1rem;
+}
