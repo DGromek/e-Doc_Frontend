@@ -42,36 +42,64 @@
 
     <div class="col-lg-4">
       <div *ngIf="clinic$ | async; let clinic" class="border rounded-lg bg-light p-3 my-4 text-center">
-        <img src="https://complianz.io/wp-content/plugins/complianz-gdpr-premium/assets/images/placeholder-google-maps.jpg" class="img-fluid mb-3">
+        <img
+          src="https://complianz.io/wp-content/plugins/complianz-gdpr-premium/assets/images/placeholder-google-maps.jpg"
+          class="img-fluid mb-3">
         <h6>Numer kontaktowy</h6>
-        <span><fa-icon [icon]="faPhoneAlt" class="mr-1"></fa-icon> {{clinic.phoneNumber}}<br></span>
+        <span><fa-icon [icon]="faPhoneAlt" class="mr-1"></fa-icon>
+          {{clinic.phoneNumber}}<br></span>
         <hr>
         <h6>Godziny otwarcia</h6>
-        <table class="table table-sm">
+        <table class="table table-sm" *ngIf="openingHours$ | async; let openingHours">
           <tr>
-            <td>Poniedziałek</td><td>8:00 - 16:00</td>
+            <td>Poniedziałek</td>
+            <td *ngIf="openingHours.moBegin != null && openingHours.moEnd != null; else closed">
+              {{openingHours.moBegin | slice:0:5}} - {{openingHours.moEnd | slice:0:5}}
+            </td>
           </tr>
           <tr>
-            <td>Wtorek</td><td>8:00 - 16:00</td>
+            <td>Wtorek</td>
+            <td *ngIf="openingHours.tuBegin != null && openingHours.tuEnd != null; else closed">
+              {{openingHours.tuBegin | slice:0:5}} - {{openingHours.tuEnd | slice:0:5}}
+            </td>
           </tr>
           <tr>
-            <td>Środa</td><td>8:00 - 16:00</td>
+            <td>Środa</td>
+            <td *ngIf="openingHours.weBegin != null && openingHours.weEnd != null; else closed">
+              {{openingHours.weBegin | slice:0:5}} - {{openingHours.weEnd | slice:0:5}}
+            </td>
           </tr>
           <tr>
-            <td>Czwartek</td><td>8:00 - 16:00</td>
+            <td>Czwartek</td>
+            <td *ngIf="openingHours.thBegin != null && openingHours.thEnd != null; else closed">
+              {{openingHours.thBegin | slice:0:5}} - {{openingHours.thEnd | slice:0:5}}
+            </td>
           </tr>
           <tr>
-            <td>Piątek</td><td>8:00 - 16:00</td>
+            <td>Piątek</td>
+            <td *ngIf="openingHours.frBegin != null && openingHours.frEnd != null; else closed">
+              {{openingHours.frBegin | slice:0:5}} - {{openingHours.frEnd | slice:0:5}}
+            </td>
           </tr>
           <tr>
-            <td>Sobota</td><td>8:00 - 16:00</td>
+            <td>Sobota</td>
+            <td *ngIf="openingHours.saBegin != null && openingHours.saEnd != null; else closed">
+              {{openingHours.saBegin | slice:0:5}} - {{openingHours.saEnd | slice:0:5}}
+            </td>
           </tr>
           <tr>
-            <td>Niedziela</td><td>8:00 - 16:00</td>
+            <td>Niedziela</td>
+            <td *ngIf="openingHours.suBegin != null && openingHours.suEnd != null; else closed">
+              {{openingHours.suBegin | slice:0:5}} - {{openingHours.suEnd | slice:0:5}}
+            </td>
           </tr>
         </table>
       </div>
     </div>
+
+    <ng-template #closed>
+      <td>Zamknięte</td>
+    </ng-template>
 
   </div>
 </div>

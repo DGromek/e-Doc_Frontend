@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {AppComponent} from '../app.component';
 import {Clinic} from '../model/Clinic';
 import {environment} from '../../environments/environment';
+import {Schedule} from '../model/Schedule';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class ClinicService {
   }
   getClinic(id: number): Observable<Clinic> {
     return this.http.get<Clinic>(environment.apiUrl + '/clinics/' + id, AppComponent.headersObject);
+  }
+
+  getClinicOpeningHours(id: number): Observable<Schedule> {
+    return this.http.get<Schedule>(environment.apiUrl + '/clinics/openingHours/' + id, AppComponent.headersObject);
   }
 }

@@ -8,6 +8,7 @@ import {DoctorService} from '../../services/doctor.service';
 import {Doctor} from '../../model/Doctor';
 import {AppointmentBookingModalComponent} from '../appointment-booking-modal/appointment-booking-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Schedule} from '../../model/Schedule';
 
 @Component({
   selector: 'app-clinic-view',
@@ -21,6 +22,7 @@ export class ClinicViewComponent implements OnInit {
   route: ActivatedRoute;
   clinic$: Observable<Clinic>;
   doctors$: Observable<Doctor[]>;
+  openingHours$: Observable<Schedule>;
   faSearch = faSearch;
   faPhoneAlt = faPhoneAlt;
 
@@ -43,7 +45,7 @@ export class ClinicViewComponent implements OnInit {
         } else {
           this.doctors$ = this.doctorService.findAllByClinicId(clinicId);
         }
-        // this.clinic$.subscribe(res => console.log(res));
+        this.openingHours$ = this.clinicService.getClinicOpeningHours(clinicId);
       }
     );
   }
