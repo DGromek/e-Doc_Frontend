@@ -1,18 +1,36 @@
-<div class="container">
-  <!-- Filter bar -->
+<!-- Filter bar -->
+<div class="container-fluid">
   <nav class="py-2">
     <form>
 
       <!-- Date picker -->
       <div class="row btn-toolbar d-flex justify-content-center" role="toolbar">
-        <div class="col-sm-4 col-lg-2 mt-3">
+        <div class="col-sm-4 col-lg-3 mt-3">
           <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd"
-                   name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <input class="form-control" placeholder="Preferowany termin" [value]="datePickerText()"
+                   name="dp"
+                   [autoClose]="'outside'"
+                   outsideDays="hidden"
+                   (dateSelect)="onDateSelection($event)"
+                   [dayTemplate]="t" ngbDatepicker #d="ngbDatepicker">
+
+            <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    [class.disabled]="isDisabled(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
             <div class="input-group-append">
               <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
             </div>
           </div>
+          <pre>From date model: {{ fromDate | json }}</pre>
+          <pre>To date model: {{ toDate | json }}</pre>
         </div>
 
         <!-- Sorting -->
@@ -30,7 +48,7 @@
         </div>
 
         <!-- Name Filter -->
-        <div class="col-sm-8 col-lg-4 mt-3">
+        <div class="col-sm-8 col-lg-3 mt-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
@@ -51,7 +69,8 @@
       </div>
     </form>
   </nav>
-
+</div>
+<div class="container">
   <div class="row">
     <div class="col-lg-2"></div>
 
@@ -64,10 +83,12 @@
         <div class="col-12 col-sm-8 p-3">
           <div class="border-bottom mb-3 pb-2">
             <h4 class="mb-0"><a href="/clinics/{{clinic.id}}">{{clinic.name}}</a></h4>
-            <span class="text-muted">{{clinic.postalCode}} {{clinic.city}} - ul. {{clinic.street}} {{clinic.houseNr}}</span><br>
+            <span class="text-muted">{{clinic.postalCode}} {{clinic.city}}
+              - ul. {{clinic.street}} {{clinic.houseNr}}</span><br>
           </div>
           <div *ngFor="let specialty of clinic.specialities" class="d-inline">
-            <a href="/clinics/{{clinic.id}}?speciality={{specialty}}" class="btn btn-outline-primary btn-sm">{{specialty}}</a>
+            <a href="/clinics/{{clinic.id}}?speciality={{specialty}}"
+               class="btn btn-outline-primary btn-sm">{{specialty}}</a>
           </div>
         </div>
       </div>
