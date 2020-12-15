@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faCalendarAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faCalendarAlt, faSearch, faCity, faUserMd, faClinicMedical, faStethoscope} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-visit-reserving',
@@ -9,6 +9,10 @@ import {faCalendarAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
 export class VisitReservingComponent implements OnInit {
   faSearch = faSearch;
   faCalendarAlt = faCalendarAlt;
+  faCity = faCity;
+  faUserMd = faUserMd;
+  faClinicMedical = faClinicMedical;
+  faStethoscope = faStethoscope;
   constructor() { }
 
   ngOnInit(): void {

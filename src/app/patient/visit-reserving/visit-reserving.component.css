@@ -10,3 +10,13 @@ h5 {
 .place-style {
   font-size: 0.8rem;
 }
+
+form [class^="col-"],
+[class*=" col-"] {
+  padding-right: 8px !important;
+  padding-left: 8px !important;
+}
+
+.form-control, .input-group-text, .filter-btn {
+  border-radius: 10px;
+}

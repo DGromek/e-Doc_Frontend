@@ -7,6 +7,9 @@
       <div class="row btn-toolbar d-flex justify-content-center" role="toolbar">
         <div class="col-sm-4 col-lg-3 mt-3">
           <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
+            </div>
             <input class="form-control" placeholder="Preferowany termin" ngbDatepicker #d="ngbDatepicker">
             <!--                   [value]="datePickerText()"-->
             <!--                   name="dp"-->
@@ -27,41 +30,68 @@
             <!--                {{ date.day }}-->
             <!--              </span>-->
             <!--            </ng-template>-->
-            <div class="input-group-append">
-              <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
-            </div>
+
           </div>
         </div>
 
-        <!-- Sorting -->
-        <div class="btn-group col-sm-4 col-lg-2 mt-3">
-          <select class="form-control">
-            <option>Miasto
-            </option>
-          </select>
-        </div>
-
-        <!-- Profession picker -->
-        <div class="btn-group col-sm-4 col-lg-2 mt-3">
-          <select class="form-control">
-            <option>Specjalizacja</option>
-          </select>
-        </div>
-
-        <!-- Name Filter -->
-        <div class="col-sm-8 col-lg-3 mt-3">
+        <!-- City -->
+        <div class="col-sm-8 col-lg-2 mt-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
-                <fa-icon [icon]="faSearch"></fa-icon>
+                <fa-icon [icon]="faCity"></fa-icon>
               </span>
             </div>
-            <input type="text" class="form-control">
+            <select class="form-control">
+              <option>Miasto</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Profession picker -->
+        <div class="col-sm-8 col-lg-2 mt-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa-icon [icon]="faStethoscope"></fa-icon>
+              </span>
+            </div>
+            <select class="form-control">
+              <option>Specjalizacja</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Place filter -->
+        <div class="col-sm-8 col-lg-2 mt-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa-icon [icon]="faClinicMedical"></fa-icon>
+              </span>
+            </div>
+            <select class="form-control">
+              <option>Placówka</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Doctor filter -->
+        <div class="col-sm-8 col-lg-2 mt-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa-icon [icon]="faUserMd"></fa-icon>
+              </span>
+            </div>
+            <select class="form-control">
+              <option>Lekarz</option>
+            </select>
           </div>
         </div>
 
         <!-- Filtering button -->
-        <div class="col-sm-4 col-lg-2 text-center mt-3">
+        <div class="col-sm-4 col-lg-1 text-center mt-3">
           <div class="btn-group btn-block">
             <button class="btn btn-success filter-btn">Filtruj!</button>
           </div>
