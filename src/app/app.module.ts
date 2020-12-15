@@ -23,6 +23,7 @@ import {registerLocaleData} from '@angular/common';
 import { ClinicsBrowserComponent } from './patient/clinics-browser/clinics-browser.component';
 import { ClinicViewComponent } from './patient/clinic-view/clinic-view.component';
 import { AppointmentBookingModalComponent } from './patient/appointment-booking-modal/appointment-booking-modal.component';
+import { VisitReservingComponent } from './patient/visit-reserving/visit-reserving.component';
 
 registerLocaleData(localePl);
 
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'clinics', component: ClinicsBrowserComponent},
   {path: 'clinics/:id', component: ClinicViewComponent},
+  {path: 'reservation', component: VisitReservingComponent},
   {
     path: '',
     redirectTo: '/home',
@@ -52,6 +54,7 @@ const appRoutes: Routes = [
     ClinicsBrowserComponent,
     ClinicViewComponent,
     AppointmentBookingModalComponent,
+    VisitReservingComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

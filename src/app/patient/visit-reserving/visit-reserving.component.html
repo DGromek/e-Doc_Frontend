@@ -1,0 +1,96 @@
+<!-- Filter bar -->
+<div class="container-fluid">
+  <nav class="py-2">
+    <form>
+
+      <!-- Date picker -->
+      <div class="row btn-toolbar d-flex justify-content-center" role="toolbar">
+        <div class="col-sm-4 col-lg-3 mt-3">
+          <div class="input-group">
+            <input class="form-control" placeholder="Preferowany termin" ngbDatepicker #d="ngbDatepicker">
+            <!--                   [value]="datePickerText()"-->
+            <!--                   name="dp"-->
+            <!--                   [autoClose]="'outside'"-->
+            <!--                   outsideDays="hidden"-->
+            <!--                   (dateSelect)="onDateSelection($event)"-->
+            <!--                   [dayTemplate]="t" -->
+
+
+            <!--            <ng-template #t let-date let-focused="focused">-->
+            <!--              <span class="custom-day"-->
+            <!--                    [class.focused]="focused"-->
+            <!--                    [class.range]="isRange(date)"-->
+            <!--                    [class.faded]="isHovered(date) || isInside(date)"-->
+            <!--                    [class.disabled]="isDisabled(date)"-->
+            <!--                    (mouseenter)="hoveredDate = date"-->
+            <!--                    (mouseleave)="hoveredDate = null">-->
+            <!--                {{ date.day }}-->
+            <!--              </span>-->
+            <!--            </ng-template>-->
+            <div class="input-group-append">
+              <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sorting -->
+        <div class="btn-group col-sm-4 col-lg-2 mt-3">
+          <select class="form-control">
+            <option>Miasto
+            </option>
+          </select>
+        </div>
+
+        <!-- Profession picker -->
+        <div class="btn-group col-sm-4 col-lg-2 mt-3">
+          <select class="form-control">
+            <option>Specjalizacja</option>
+          </select>
+        </div>
+
+        <!-- Name Filter -->
+        <div class="col-sm-8 col-lg-3 mt-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa-icon [icon]="faSearch"></fa-icon>
+              </span>
+            </div>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+
+        <!-- Filtering button -->
+        <div class="col-sm-4 col-lg-2 text-center mt-3">
+          <div class="btn-group btn-block">
+            <button class="btn btn-success filter-btn">Filtruj!</button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </nav>
+</div>
+<div class="container-lg">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 p-0 p-md-1">
+      <div class="row border rounded-lg bg-light px-0 px-md-1 py-2 m-2">
+        <div class="col-9">
+          <h6 class="d-block mb-0 mt-2">Jan Kowalski - Urolog</h6>
+          <span class="d-block text-muted place-style">Klinika leczenia fiflaka</span>
+          <span class="d-block">Łódź, Narutowicza 78</span>
+          <button class="btn btn-primary btn-sm btn-block p-1 my-2">Rezerwuj</button>
+        </div>
+        <div class="col-3 text-center m-auto border-left px-0 px-sm-2">
+          <span class="d-block year-fontsize">2020</span>
+          <span class="d-block">Październik</span>
+          <h5 class="mr-0">12</h5>
+          <span class="d-none d-md-block"><strong>Poniedziałek</strong></span>
+          <span class="d-block d-none d-sm-block d-md-none"><strong>Pon</strong></span>
+          <span class="d-block">13:40</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,21 +1,24 @@
 <div class="container">
   <div class="row my-3">
-    <div class="col-md-6">
+    <div class="col-md-6 px-0 px-md-2">
       <h4 class="text-center pt-3">Zbliżajace się wizyty</h4>
 
       <div *ngFor="let appointment of appointments$ | async">
-        <div class="row border rounded-lg bg-light p-1 m-2">
+        <div class="row border rounded-lg bg-light px-0 px-md-1 py-2 m-2">
           <div class="col-9">
             <span class="badge badge-success d-inline-block px-3" *ngIf="appointment.status == 'DONE'">Odbyta</span>
             <span class="badge badge-info d-inline-block px-3" *ngIf="appointment.status == 'PENDING'">Potwierdzona</span>
             <span class="badge badge-danger d-inline-block px-3" *ngIf="appointment.status == 'CANCELED'">Anulowana</span>
-            <span class="d-block">{{appointment.doctor.firstName}} {{appointment.doctor.lastName}} - {{appointment.doctor.speciality}}</span>
-            <small class="d-block">{{appointment.clinic.city}}, {{appointment.clinic.street}} {{appointment.clinic.houseNr}} {{appointment.clinic.flatNr}} - {{appointment.clinic.name}}</small>
+            <h6 class="d-block mb-0 mt-2">{{appointment.doctor.firstName}} {{appointment.doctor.lastName}} - {{appointment.doctor.speciality}}</h6>
+            <span class="d-block text-muted place-style">{{appointment.clinic.name}}</span>
+            <span class="d-block">{{appointment.clinic.city}}, {{appointment.clinic.street}} {{appointment.clinic.houseNr}} {{appointment.clinic.flatNr}}</span>
           </div>
-          <div class="col-3 text-center m-auto border-left">
+          <div class="col-3 text-center m-auto border-left px-0 px-sm-2">
             <span class="d-block year-fontsize">{{appointment.dateOfAppointment | date: 'yyyy'}}</span>
             <span class="d-block">{{appointment.dateOfAppointment | date: 'LLLL' | titlecase}}</span>
             <h5 class="mr-0">{{appointment.dateOfAppointment | date: 'd'}}</h5>
+            <span class="d-none d-md-block"><strong>{{appointment.dateOfAppointment | date: 'EEEE'}}</strong></span>
+            <span class="d-block d-none d-sm-block d-md-none"><strong>{{appointment.dateOfAppointment | date: 'EE'}}</strong></span>
             <span class="d-block">{{appointment.dateOfAppointment | date:'HH:mm'}}</span>
           </div>
         </div>
