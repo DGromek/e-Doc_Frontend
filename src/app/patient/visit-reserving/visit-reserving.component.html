@@ -5,37 +5,21 @@
 
       <!-- Date picker -->
       <div class="row btn-toolbar d-flex justify-content-center" role="toolbar">
-        <div class="col-sm-4 col-lg-3 mt-3">
+        <div class="col-sm-6 col-lg-2 mt-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
             </div>
-            <input class="form-control" placeholder="Preferowany termin" ngbDatepicker #d="ngbDatepicker">
-            <!--                   [value]="datePickerText()"-->
-            <!--                   name="dp"-->
-            <!--                   [autoClose]="'outside'"-->
-            <!--                   outsideDays="hidden"-->
-            <!--                   (dateSelect)="onDateSelection($event)"-->
-            <!--                   [dayTemplate]="t" -->
-
-
-            <!--            <ng-template #t let-date let-focused="focused">-->
-            <!--              <span class="custom-day"-->
-            <!--                    [class.focused]="focused"-->
-            <!--                    [class.range]="isRange(date)"-->
-            <!--                    [class.faded]="isHovered(date) || isInside(date)"-->
-            <!--                    [class.disabled]="isDisabled(date)"-->
-            <!--                    (mouseenter)="hoveredDate = date"-->
-            <!--                    (mouseleave)="hoveredDate = null">-->
-            <!--                {{ date.day }}-->
-            <!--              </span>-->
-            <!--            </ng-template>-->
-
+            <input (click)="d.toggle()" class="form-control" placeholder="Szukaj od" ngbDatepicker
+                   [ngModel]="date"
+                   name="dp"
+                   outsideDays="hidden"
+                   #d="ngbDatepicker">
           </div>
         </div>
 
         <!-- City -->
-        <div class="col-sm-8 col-lg-2 mt-3">
+        <div class="col-sm-6 col-lg-2 mt-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
@@ -43,13 +27,14 @@
               </span>
             </div>
             <select class="form-control">
-              <option>Miasto</option>
+              <option selected="selected" [value]="">Miasto</option>
+              <option *ngFor="let city of cities$ | async">{{city}}</option>
             </select>
           </div>
         </div>
 
         <!-- Profession picker -->
-        <div class="col-sm-8 col-lg-2 mt-3">
+        <div class="col-sm-6 col-lg-2 mt-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
@@ -57,13 +42,14 @@
               </span>
             </div>
             <select class="form-control">
-              <option>Specjalizacja</option>
+              <option [value]="">Specjalizacja</option>
+              <option [value]="specialty" *ngFor="let specialty of specialities$ | async">{{specialty}}</option>
             </select>
           </div>
         </div>
 
         <!-- Place filter -->
-        <div class="col-sm-8 col-lg-2 mt-3">
+        <div class="col-sm-6 col-lg-2 mt-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
@@ -71,13 +57,14 @@
               </span>
             </div>
             <select class="form-control">
-              <option>Placówka</option>
+              <option [value]="">Placówka</option>
+              <option [value]="clinicName" *ngFor="let clinicName of clinicNames$ | async">{{clinicName}}</option>
             </select>
           </div>
         </div>
 
         <!-- Doctor filter -->
-        <div class="col-sm-8 col-lg-2 mt-3">
+        <div class="col-sm-6 col-lg-2 mt-3">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">
@@ -85,13 +72,14 @@
               </span>
             </div>
             <select class="form-control">
-              <option>Lekarz</option>
+              <option [value]="">Lekarz</option>
+              <option [value]="doctorName" *ngFor="let doctorName of doctorsNames$ | async">{{doctorName}}</option>
             </select>
           </div>
         </div>
 
         <!-- Filtering button -->
-        <div class="col-sm-4 col-lg-1 text-center mt-3">
+        <div class="col-sm-6 col-lg-2 text-center mt-3">
           <div class="btn-group btn-block">
             <button class="btn btn-success filter-btn">Filtruj!</button>
           </div>
