@@ -16,13 +16,22 @@ export class FilterService {
   getCities(): Observable<string[]> {
     return this.http.get<string[]>(environment.apiUrl + '/cities', AppComponent.headersObject);
   }
-  getClinicNames(): Observable<string[]> {
-    return this.http.get<string[]>(environment.apiUrl + '/clinicNames', AppComponent.headersObject);
+
+  getClinicNames(selectedCity: string, selectedDoctor?: string): Observable<string[]> {
+    return this.http.get<string[]>(environment.apiUrl + '/clinicNames'
+      + '?city=' + selectedCity
+      + (selectedDoctor !== undefined && selectedDoctor !== null ? '&doctorName=' + selectedDoctor : '')
+      , AppComponent.headersObject);
   }
   getSpecialities(): Observable<string[]> {
     return this.http.get<string[]>(environment.apiUrl + '/specialities', AppComponent.headersObject);
   }
-  getDoctorsNames(): Observable<string[]> {
-    return this.http.get<string[]>(environment.apiUrl + '/doctorsNames', AppComponent.headersObject);
+
+  getDoctorsNames(selectedCity: string, selectedSpeciality: string, selectedClinic?: string): Observable<string[]> {
+    return this.http.get<string[]>(environment.apiUrl + '/doctorsNames'
+      + '?city=' + selectedCity
+      + '&speciality=' + selectedSpeciality
+      + (selectedClinic !== undefined && selectedClinic !== null ? '&clinicName=' + selectedClinic : '')
+      , AppComponent.headersObject);
   }
 }

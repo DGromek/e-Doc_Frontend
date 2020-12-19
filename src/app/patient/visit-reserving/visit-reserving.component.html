@@ -25,7 +25,7 @@
                 <fa-icon [icon]="faCity"></fa-icon>
               </span>
           </div>
-          <select [(ngModel)]="selectedCity" class="form-control">
+          <select [(ngModel)]="selectedCity" (ngModelChange)="onCitySelect()" class="form-control">
             <option [ngValue]="null" hidden [disabled]>*Miasto</option>
             <option [ngValue]="city" *ngFor="let city of cities$ | async">{{city}}</option>
           </select>
@@ -40,7 +40,7 @@
                 <fa-icon [icon]="faStethoscope"></fa-icon>
               </span>
           </div>
-          <select [(ngModel)]="selectedSpeciality" class="form-control">
+          <select [(ngModel)]="selectedSpeciality" (ngModelChange)="onSpecialtySelect()" class="form-control">
             <option [ngValue]="null" hidden [disabled]>*Specjalizacja</option>
             <option [ngValue]="specialty" *ngFor="let specialty of specialities$ | async">{{specialty}}</option>
           </select>
@@ -55,7 +55,7 @@
                 <fa-icon [icon]="faClinicMedical"></fa-icon>
               </span>
           </div>
-          <select [(ngModel)]="selectedClinic" class="form-control">
+          <select [(ngModel)]="selectedClinic" (ngModelChange)="onClinicSelect()" class="form-control">
             <option [ngValue]="null" hidden [disabled]="true">Placówka</option>
             <option [ngValue]="null">&lt;dowolna&gt;</option>
             <option [ngValue]="clinicName" *ngFor="let clinicName of clinicsNames$ | async">{{clinicName}}</option>
@@ -71,7 +71,7 @@
                 <fa-icon [icon]="faUserMd"></fa-icon>
               </span>
           </div>
-          <select [(ngModel)]="selectedDoctor" class="form-control">
+          <select [(ngModel)]="selectedDoctor" (ngModelChange)="onDoctorSelect()" class="form-control">
             <option [ngValue]="null" hidden [disabled]="true">Lekarz</option>
             <option [ngValue]="null">&lt;dowolny&gt;</option>
             <option [ngValue]="doctorName" *ngFor="let doctorName of doctorsNames$ | async">{{doctorName}}</option>

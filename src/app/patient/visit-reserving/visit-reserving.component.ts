@@ -51,9 +51,35 @@ export class VisitReservingComponent implements OnInit {
 
   ngOnInit(): void {
     this.cities$ = this.filterService.getCities();
-    this.clinicsNames$ = this.filterService.getClinicNames();
     this.specialities$ = this.filterService.getSpecialities();
-    this.doctorsNames$ = this.filterService.getDoctorsNames();
+
+  }
+
+  onCitySelect(): void {
+    this.selectedClinic = null;
+    this.selectedDoctor = null;
+    this.clinicsNames$ = this.filterService.getClinicNames(this.selectedCity, this.selectedDoctor);
+    if (this.selectedSpeciality != null) {
+      this.doctorsNames$ = this.filterService.getDoctorsNames(this.selectedCity, this.selectedSpeciality, this.selectedClinic);
+    }
+  }
+
+  onSpecialtySelect(): void {
+    if (this.selectedDoctor != null) {
+      this.selectedDoctor = null;
+      this.onDoctorSelect();
+    }
+    if (this.selectedCity != null) {
+        this.doctorsNames$ = this.filterService.getDoctorsNames(this.selectedCity, this.selectedSpeciality, this.selectedClinic);
+    }
+  }
+
+  onDoctorSelect(): void {
+    this.clinicsNames$ = this.filterService.getClinicNames(this.selectedCity, this.selectedDoctor);
+  }
+
+  onClinicSelect(): void {
+    this.doctorsNames$ = this.filterService.getDoctorsNames(this.selectedCity, this.selectedSpeciality, this.selectedClinic);
   }
 
   canSubmit(): boolean {

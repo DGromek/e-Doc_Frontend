@@ -52,7 +52,7 @@ export class AppointmentService {
       '?date=' + DateTimeUtils.ngbDateAsStringISO(date) +
       '&city=' + city +
       '&speciality=' + speciality +
-      (clinicName !== undefined && clinicName !== null ? '&clinicName = ' + clinicName : '') +
-      (doctorName !== undefined && doctorName !== null ? '&doctorName = ' + doctorName : ''), AppComponent.headersObject);
+      (clinicName !== undefined && clinicName !== null ? '&clinicName=' + clinicName : '') +
+      (doctorName !== undefined && doctorName !== null ? '&doctorName=' + doctorName : ''), AppComponent.headersObject);
   }
 }
