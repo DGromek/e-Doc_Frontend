@@ -19,6 +19,7 @@ export class AppointmentService {
   constructor(http: HttpClient) {
     this.http = http;
   }
+
   getAppointments(): Observable<Appointment[]> {
     return this.http.get<Appointment[]>(environment.apiUrl + '/appointments', AppComponent.headersObject)
       .pipe(map(arr => {
@@ -26,15 +27,17 @@ export class AppointmentService {
         return arr;
       }));
   }
+
   postAppointment(appointmentDTO: AppointmentDTO): Observable<Appointment> {
     return this.http.post<Appointment>(environment.apiUrl + '/appointments', appointmentDTO, AppComponent.headersObject);
   }
+
   getFreeTermsForGivenDate(date: NgbDate, clinicId: number, doctorId: number): Observable<Time[]> {
     return this.http.get<string[]>(environment.apiUrl + '/appointments/free-terms' +
-      '?date=' + DateTimeUtils.ngbDateAsString(date) +
+      '?date=' + DateTimeUtils.ngbDateAsStringForDisplay(date) +
       '&clinicId=' + clinicId +
       '&doctorId=' + doctorId, AppComponent.headersObject)
-      .pipe(map( res => {
+      .pipe(map(res => {
         const mapped = new Array<Time>();
         for (let i = 0; i < res.length; i++) {
           mapped[i] = new Time(res[i]);
@@ -43,12 +46,13 @@ export class AppointmentService {
       }));
   }
 
-  getFreeTerms(date: NgbDate, city: string, speciality: string, clinicName?: string, doctorName?: string): Observable<Appointment[]> {
-    return this.http.get<Appointment[]>(environment.apiUrl + '/appointments/free-terms' +
-      '?date=' + DateTimeUtils.ngbDateAsString(date) +
+  getFreeAppointments(date: NgbDate, city: string, speciality: string, clinicName?: string, doctorName?: string)
+    : Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(environment.apiUrl + '/appointments/free-appointments' +
+      '?date=' + DateTimeUtils.ngbDateAsStringISO(date) +
       '&city=' + city +
       '&speciality=' + speciality +
-      (clinicName !== undefined ? '&clinicName = ' + clinicName : '') +
-      (doctorName !== undefined ? '&doctorName = ' + doctorName : ''), AppComponent.headersObject);
+      (clinicName !== undefined && clinicName !== null ? '&clinicName = ' + clinicName : '') +
+      (doctorName !== undefined && doctorName !== null ? '&doctorName = ' + doctorName : ''), AppComponent.headersObject);
   }
 }

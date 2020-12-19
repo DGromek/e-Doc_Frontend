@@ -82,7 +82,7 @@
       <!-- Filtering button -->
       <div class="col-sm-6 col-lg-2 text-center mt-3">
         <div class="btn-group btn-block">
-          <button class="btn btn-success filter-btn" [disabled]="!canSubmit()">Szukaj!</button>
+          <button class="btn btn-success filter-btn" [disabled]="!canSubmit()" (click)="getFreeAppointments()">Szukaj!</button>
         </div>
       </div>
 
@@ -90,24 +90,25 @@
   </nav>
 </div>
 <div class="container-lg">
-  <h4 class="text-center my-2">Wybierz wartości w okienkach oznaczonych "*" a następnie klinknij przycisk "Szukaj!" aby
+  <h4 class="text-center my-4" *ngIf="freeTerms$ === undefined">Wybierz wartości w okienkach oznaczonych "*" a następnie klinknij przycisk "Szukaj!" aby
     wyszukać dostępne terminy</h4>
+  <h4 class="text-center my-4" *ngIf="freeTerms$ === null">Niestety nie znaleźliśmy żadnych dostępnych terminów dla podanych kryteriów. Zmień parametry wyszukiwania i spróbuj ponownie.</h4>
   <div class="row">
-    <div class="col-12 col-md-6 col-lg-6 p-0 p-md-1">
+    <div *ngFor="let freeTerm of freeTerms$ | async" class="col-12 col-md-6 col-lg-6 p-0 p-md-1">
       <div class="row border rounded-lg bg-light px-0 px-md-1 py-2 m-2">
         <div class="col-9">
-          <h6 class="d-block mb-0 mt-2">Jan Kowalski - Urolog</h6>
-          <span class="d-block text-muted place-style">Klinika leczenia fiflaka</span>
-          <span class="d-block">Łódź, Narutowicza 78</span>
+          <h6 class="d-block mb-0 mt-2">{{freeTerm.doctor.firstName}} {{freeTerm.doctor.lastName}} - {{freeTerm.doctor.speciality}}</h6>
+          <span class="d-block text-muted place-style">{{freeTerm.clinic.name}}</span>
+          <span class="d-block">{{freeTerm.clinic.city}}, {{freeTerm.clinic.street}} {{freeTerm.clinic.houseNr}} {{freeTerm.clinic.flatNr}}</span>
           <button class="btn btn-primary btn-sm btn-block p-1 my-2">Rezerwuj</button>
         </div>
         <div class="col-3 text-center m-auto border-left px-0 px-sm-2">
-          <span class="d-block year-fontsize">2020</span>
-          <span class="d-block">Październik</span>
-          <h5 class="mr-0">12</h5>
-          <span class="d-none d-md-block"><strong>Poniedziałek</strong></span>
-          <span class="d-block d-none d-sm-block d-md-none"><strong>Pon</strong></span>
-          <span class="d-block">13:40</span>
+          <span class="d-block year-fontsize">{{freeTerm.dateOfAppointment | date: 'yyyy'}}</span>
+          <span class="d-block">{{freeTerm.dateOfAppointment | date: 'LLLL' | titlecase}}</span>
+          <h5 class="mr-0">{{freeTerm.dateOfAppointment | date: 'd'}}</h5>
+          <span class="d-none d-md-block"><strong>{{freeTerm.dateOfAppointment | date: 'EEEE'}}</strong></span>
+          <span class="d-block d-none d-sm-block d-md-none"><strong>{{freeTerm.dateOfAppointment | date: 'EE'}}</strong></span>
+          <span class="d-block">{{freeTerm.dateOfAppointment | date:'HH:mm'}}</span>
         </div>
       </div>
     </div>

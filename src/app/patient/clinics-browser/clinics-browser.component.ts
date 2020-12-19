@@ -78,9 +78,9 @@ export class ClinicsBrowserComponent implements OnInit {
 
     datePickerText(): string {
         if (this.fromDate != null && this.toDate != null) {
-            return DateTimeUtils.ngbDateAsString(this.fromDate) + ' - ' + DateTimeUtils.ngbDateAsString(this.toDate);
+            return DateTimeUtils.ngbDateAsStringForDisplay(this.fromDate) + ' - ' + DateTimeUtils.ngbDateAsStringForDisplay(this.toDate);
         } else if (this.fromDate != null) {
-            return DateTimeUtils.ngbDateAsString(this.fromDate);
+            return DateTimeUtils.ngbDateAsStringForDisplay(this.fromDate);
         }
         return '';
     }

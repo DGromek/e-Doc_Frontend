@@ -20,7 +20,7 @@ export class VisitReservingComponent implements OnInit {
   clinicsNames$: Observable<string[]>;
   specialities$: Observable<string[]>;
   doctorsNames$: Observable<string[]>;
-  freeTerms$: Observable<Appointment>;
+  freeTerms$: Observable<Appointment[]>;
   // Icons
   faCalendarAlt = faCalendarAlt;
   faCity = faCity;
@@ -56,7 +56,12 @@ export class VisitReservingComponent implements OnInit {
     this.doctorsNames$ = this.filterService.getDoctorsNames();
   }
 
-  canSubmit() {
+  canSubmit(): boolean {
     return this.date != null && this.selectedCity != null && this.selectedSpeciality != null;
+  }
+
+  getFreeAppointments(): void {
+    this.freeTerms$ = this.appointmentService.getFreeAppointments(this.date, this.selectedCity, this.selectedSpeciality,
+      this.selectedClinic, this.selectedDoctor);
   }
 }
