@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {faCalendarAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
-import {NgbDate, NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDate, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ClinicService} from '../../services/clinic.service';
 import {Observable} from 'rxjs';
 import {Clinic} from '../../model/Clinic';
 import {map} from 'rxjs/operators';
+import {DateTimeUtils} from '../../utils/DateTimeUtils';
 
 @Component({
     selector: 'app-doc-browser',
@@ -77,14 +78,10 @@ export class ClinicsBrowserComponent implements OnInit {
 
     datePickerText(): string {
         if (this.fromDate != null && this.toDate != null) {
-            return this.ngbDateAsString(this.fromDate) + ' - ' + this.ngbDateAsString(this.toDate);
+            return DateTimeUtils.ngbDateAsString(this.fromDate) + ' - ' + DateTimeUtils.ngbDateAsString(this.toDate);
         } else if (this.fromDate != null) {
-            return this.ngbDateAsString(this.fromDate);
+            return DateTimeUtils.ngbDateAsString(this.fromDate);
         }
         return '';
-    }
-
-    ngbDateAsString(date: NgbDate): string {
-        return ('0' + date.day).slice(-2) + '-' + ('0' + date.month).slice(-2) + '-' + date.year;
     }
 }

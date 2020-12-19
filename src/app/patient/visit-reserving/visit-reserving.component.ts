@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {faCalendarAlt, faCity, faUserMd, faClinicMedical, faStethoscope} from '@fortawesome/free-solid-svg-icons';
 import {FilterService} from '../../services/filter.service';
 import {Observable} from 'rxjs';
 import {NgbDate, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Appointment} from '../../model/Appointment';
+import {AppointmentService} from '../../services/appointment.service';
 
 @Component({
   selector: 'app-visit-reserving',
@@ -10,13 +12,15 @@ import {NgbDate, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./visit-reserving.component.css']
 })
 export class VisitReservingComponent implements OnInit {
-  // Service
+  // Services
   filterService: FilterService;
+  appointmentService: AppointmentService;
   // Data
   cities$: Observable<string[]>;
-  clinicNames$: Observable<string[]>;
+  clinicsNames$: Observable<string[]>;
   specialities$: Observable<string[]>;
   doctorsNames$: Observable<string[]>;
+  freeTerms$: Observable<Appointment>;
   // Icons
   faCalendarAlt = faCalendarAlt;
   faCity = faCity;
@@ -26,17 +30,33 @@ export class VisitReservingComponent implements OnInit {
   // Calendar properties
   date: NgbDate;
   config: NgbDatepickerConfig;
-  constructor(filterService: FilterService, config: NgbDatepickerConfig) {
+  // Selected filters
+  public selectedCity: string;
+  public selectedSpeciality: string;
+  public selectedClinic: string;
+  public selectedDoctor: string;
+
+  constructor(filterService: FilterService, appointmentsService: AppointmentService, config: NgbDatepickerConfig) {
     this.filterService = filterService;
+    this.appointmentService = appointmentsService;
     this.config = config;
     const current = new Date();
     this.config.minDate = {year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate()};
+
+    this.selectedClinic = null;
+    this.selectedDoctor = null;
+    this.selectedSpeciality = null;
+    this.selectedCity = null;
   }
 
   ngOnInit(): void {
     this.cities$ = this.filterService.getCities();
-    this.clinicNames$ = this.filterService.getClinicNames();
+    this.clinicsNames$ = this.filterService.getClinicNames();
     this.specialities$ = this.filterService.getSpecialities();
     this.doctorsNames$ = this.filterService.getDoctorsNames();
+  }
+
+  canSubmit() {
+    return this.date != null && this.selectedCity != null && this.selectedSpeciality != null;
   }
 }

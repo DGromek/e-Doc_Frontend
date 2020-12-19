@@ -8,6 +8,7 @@ import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {Time} from '../model/Time';
 import {AppointmentDTO} from '../model/AppointmentDTO';
 import {environment} from '../../environments/environment';
+import {DateTimeUtils} from '../utils/DateTimeUtils';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,8 @@ export class AppointmentService {
     return this.http.post<Appointment>(environment.apiUrl + '/appointments', appointmentDTO, AppComponent.headersObject);
   }
   getFreeTermsForGivenDate(date: NgbDate, clinicId: number, doctorId: number): Observable<Time[]> {
-    const dateStringForUrl = date.year + '-' + date.month.toString().padStart(2, '0') + '-' + date.day.toString().padStart(2, '0');
     return this.http.get<string[]>(environment.apiUrl + '/appointments/free-terms' +
-      '?date=' + dateStringForUrl +
+      '?date=' + DateTimeUtils.ngbDateAsString(date) +
       '&clinicId=' + clinicId +
       '&doctorId=' + doctorId, AppComponent.headersObject)
       .pipe(map( res => {
@@ -41,5 +41,14 @@ export class AppointmentService {
         }
         return mapped;
       }));
+  }
+
+  getFreeTerms(date: NgbDate, city: string, speciality: string, clinicName?: string, doctorName?: string): Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(environment.apiUrl + '/appointments/free-terms' +
+      '?date=' + DateTimeUtils.ngbDateAsString(date) +
+      '&city=' + city +
+      '&speciality=' + speciality +
+      (clinicName !== undefined ? '&clinicName = ' + clinicName : '') +
+      (doctorName !== undefined ? '&doctorName = ' + doctorName : ''), AppComponent.headersObject);
   }
 }

@@ -1,95 +1,97 @@
 <!-- Filter bar -->
 <div class="container-fluid">
   <nav class="py-2">
-    <form>
 
-      <!-- Date picker -->
-      <div class="row btn-toolbar d-flex justify-content-center" role="toolbar">
-        <div class="col-sm-6 col-lg-2 mt-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
-            </div>
-            <input (click)="d.toggle()" class="form-control" placeholder="Szukaj od" ngbDatepicker
-                   [ngModel]="date"
-                   name="dp"
-                   outsideDays="hidden"
-                   #d="ngbDatepicker">
+    <!-- Date picker -->
+    <div class="row btn-toolbar d-flex justify-content-center" role="toolbar">
+      <div class="col-sm-6 col-lg-2 mt-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><fa-icon [icon]="faCalendarAlt" (click)="d.toggle()"></fa-icon></span>
           </div>
+          <input (click)="d.toggle()" class="form-control" placeholder="*Szukaj od" ngbDatepicker
+                 [(ngModel)]="date"
+                 name="dp"
+                 outsideDays="hidden"
+                 #d="ngbDatepicker">
         </div>
+      </div>
 
-        <!-- City -->
-        <div class="col-sm-6 col-lg-2 mt-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
+      <!-- City -->
+      <div class="col-sm-6 col-lg-2 mt-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
               <span class="input-group-text">
                 <fa-icon [icon]="faCity"></fa-icon>
               </span>
-            </div>
-            <select class="form-control">
-              <option selected="selected" [value]="">Miasto</option>
-              <option *ngFor="let city of cities$ | async">{{city}}</option>
-            </select>
           </div>
+          <select [(ngModel)]="selectedCity" class="form-control">
+            <option [ngValue]="null" hidden [disabled]>*Miasto</option>
+            <option [ngValue]="city" *ngFor="let city of cities$ | async">{{city}}</option>
+          </select>
         </div>
+      </div>
 
-        <!-- Profession picker -->
-        <div class="col-sm-6 col-lg-2 mt-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
+      <!-- Profession picker -->
+      <div class="col-sm-6 col-lg-2 mt-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
               <span class="input-group-text">
                 <fa-icon [icon]="faStethoscope"></fa-icon>
               </span>
-            </div>
-            <select class="form-control">
-              <option [value]="">Specjalizacja</option>
-              <option [value]="specialty" *ngFor="let specialty of specialities$ | async">{{specialty}}</option>
-            </select>
           </div>
+          <select [(ngModel)]="selectedSpeciality" class="form-control">
+            <option [ngValue]="null" hidden [disabled]>*Specjalizacja</option>
+            <option [ngValue]="specialty" *ngFor="let specialty of specialities$ | async">{{specialty}}</option>
+          </select>
         </div>
+      </div>
 
-        <!-- Place filter -->
-        <div class="col-sm-6 col-lg-2 mt-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
+      <!-- Place filter -->
+      <div class="col-sm-6 col-lg-2 mt-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
               <span class="input-group-text">
                 <fa-icon [icon]="faClinicMedical"></fa-icon>
               </span>
-            </div>
-            <select class="form-control">
-              <option [value]="">Placówka</option>
-              <option [value]="clinicName" *ngFor="let clinicName of clinicNames$ | async">{{clinicName}}</option>
-            </select>
           </div>
+          <select [(ngModel)]="selectedClinic" class="form-control">
+            <option [ngValue]="null" hidden [disabled]="true">Placówka</option>
+            <option [ngValue]="null">&lt;dowolna&gt;</option>
+            <option [ngValue]="clinicName" *ngFor="let clinicName of clinicsNames$ | async">{{clinicName}}</option>
+          </select>
         </div>
+      </div>
 
-        <!-- Doctor filter -->
-        <div class="col-sm-6 col-lg-2 mt-3">
-          <div class="input-group">
-            <div class="input-group-prepend">
+      <!-- Doctor filter -->
+      <div class="col-sm-6 col-lg-2 mt-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
               <span class="input-group-text">
                 <fa-icon [icon]="faUserMd"></fa-icon>
               </span>
-            </div>
-            <select class="form-control">
-              <option [value]="">Lekarz</option>
-              <option [value]="doctorName" *ngFor="let doctorName of doctorsNames$ | async">{{doctorName}}</option>
-            </select>
           </div>
+          <select [(ngModel)]="selectedDoctor" class="form-control">
+            <option [ngValue]="null" hidden [disabled]="true">Lekarz</option>
+            <option [ngValue]="null">&lt;dowolny&gt;</option>
+            <option [ngValue]="doctorName" *ngFor="let doctorName of doctorsNames$ | async">{{doctorName}}</option>
+          </select>
         </div>
-
-        <!-- Filtering button -->
-        <div class="col-sm-6 col-lg-2 text-center mt-3">
-          <div class="btn-group btn-block">
-            <button class="btn btn-success filter-btn">Filtruj!</button>
-          </div>
-        </div>
-
       </div>
-    </form>
+
+      <!-- Filtering button -->
+      <div class="col-sm-6 col-lg-2 text-center mt-3">
+        <div class="btn-group btn-block">
+          <button class="btn btn-success filter-btn" [disabled]="!canSubmit()">Szukaj!</button>
+        </div>
+      </div>
+
+    </div>
   </nav>
 </div>
 <div class="container-lg">
+  <h4 class="text-center my-2">Wybierz wartości w okienkach oznaczonych "*" a następnie klinknij przycisk "Szukaj!" aby
+    wyszukać dostępne terminy</h4>
   <div class="row">
     <div class="col-12 col-md-6 col-lg-6 p-0 p-md-1">
       <div class="row border rounded-lg bg-light px-0 px-md-1 py-2 m-2">
