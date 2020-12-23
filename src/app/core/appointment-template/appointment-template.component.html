@@ -3,8 +3,8 @@
     <span class="badge badge-success d-inline-block px-3" *ngIf="appointment.status == 'DONE'">Odbyta</span>
     <span class="badge badge-info d-inline-block px-3" *ngIf="appointment.status == 'PENDING'">Potwierdzona</span>
     <span class="badge badge-danger d-inline-block px-3" *ngIf="appointment.status == 'CANCELED'">Anulowana</span>
-    <h6 class="d-block mb-0 mt-2">{{appointment.doctor.firstName}} {{appointment.doctor.lastName}} - {{appointment.doctor.speciality}}</h6>
-    <span class="d-block text-muted place-style">{{appointment.clinic.name}}</span>
+    <a routerLink="/doctors/{{appointment.doctor.id}}" class="d-block mb-0 mt-2 h6">{{appointment.doctor.firstName}} {{appointment.doctor.lastName}} - {{appointment.doctor.speciality}}</a>
+    <a routerLink="/clinics/{{appointment.clinic.id}}" class="d-block text-muted place-style">{{appointment.clinic.name}}</a>
     <span class="d-block">{{appointment.clinic.city}}, {{appointment.clinic.street}} {{appointment.clinic.houseNr}} {{appointment.clinic.flatNr}}</span>
     <button *ngIf="appointment.status == null" class="btn btn-primary btn-sm btn-block p-1 my-2" (click)="onReservationButtonClick(content)">
       Rezerwuj

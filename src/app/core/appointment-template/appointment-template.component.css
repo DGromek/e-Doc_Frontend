@@ -15,3 +15,7 @@ h5 {
 .place-style {
   font-size: 0.8rem;
 }
+
+.h6 {
+  color: var(--primary-dark);
+}
