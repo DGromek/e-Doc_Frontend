@@ -1,0 +1,17 @@
+h5 {
+  margin-bottom: 0;
+}
+
+.badge {
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.year-fontsize {
+  font-size: 12px;
+  margin-bottom: -3px;
+}
+
+.place-style {
+  font-size: 0.8rem;
+}

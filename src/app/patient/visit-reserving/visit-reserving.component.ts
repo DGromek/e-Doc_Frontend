@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {faCalendarAlt, faCity, faUserMd, faClinicMedical, faStethoscope, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import {faCalendarAlt, faCity, faUserMd, faClinicMedical, faStethoscope} from '@fortawesome/free-solid-svg-icons';
 import {FilterService} from '../../services/filter.service';
 import {Observable} from 'rxjs';
-import {NgbDate, NgbDatepickerConfig, NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDate, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {Appointment} from '../../model/Appointment';
 import {AppointmentService} from '../../services/appointment.service';
-import {AppointmentDTO} from '../../model/AppointmentDTO';
 
 @Component({
   selector: 'app-visit-reserving',
@@ -16,7 +15,6 @@ export class VisitReservingComponent implements OnInit {
   // Services
   filterService: FilterService;
   appointmentService: AppointmentService;
-  modalService: NgbModal;
   // Data
   cities$: Observable<string[]>;
   clinicsNames$: Observable<string[]>;
@@ -30,7 +28,6 @@ export class VisitReservingComponent implements OnInit {
   faUserMd = faUserMd;
   faClinicMedical = faClinicMedical;
   faStethoscope = faStethoscope;
-  faCheckCircle = faCheckCircle;
   // Calendar properties
   date: NgbDate;
   config: NgbDatepickerConfig;
@@ -40,10 +37,9 @@ export class VisitReservingComponent implements OnInit {
   public selectedClinic: string;
   public selectedDoctor: string;
 
-  constructor(filterService: FilterService, appointmentsService: AppointmentService, config: NgbDatepickerConfig, modalService: NgbModal) {
+  constructor(filterService: FilterService, appointmentsService: AppointmentService, config: NgbDatepickerConfig) {
     this.filterService = filterService;
     this.appointmentService = appointmentsService;
-    this.modalService = modalService;
     this.config = config;
     const current = new Date();
     this.config.minDate = {year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate()};
@@ -89,20 +85,6 @@ export class VisitReservingComponent implements OnInit {
 
   canSubmit(): boolean {
     return this.date != null && this.selectedCity != null && this.selectedSpeciality != null;
-  }
-
-  onReservationButtonClick(content, freeTerm: Appointment): void {
-    const appointmentDTO = new AppointmentDTO(freeTerm.dateOfAppointment, freeTerm.clinic.id, freeTerm.doctor.id);
-    console.log(appointmentDTO);
-    this.appointmentService.postAppointment(appointmentDTO).subscribe(
-        () => {
-          const ngbModalOptions: NgbModalOptions = {
-            backdrop : 'static',
-            keyboard : false
-          };
-          this.modalService.open(content, ngbModalOptions);
-        }
-    );
   }
 
   getFreeAppointments(): void {
