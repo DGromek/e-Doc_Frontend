@@ -82,7 +82,8 @@
       <!-- Filtering button -->
       <div class="col-sm-6 col-lg-2 text-center mt-3">
         <div class="btn-group btn-block">
-          <button class="btn btn-success filter-btn" [disabled]="!canSubmit()" (click)="getFreeAppointments()">Szukaj!</button>
+          <button class="btn btn-success filter-btn" [disabled]="!canSubmit()" (click)="getFreeAppointments()">Szukaj!
+          </button>
         </div>
       </div>
 
@@ -90,17 +91,23 @@
   </nav>
 </div>
 <div class="container-lg">
-  <h4 class="text-center my-4" *ngIf="freeTerms$ === undefined">Wybierz wartości w okienkach oznaczonych "*" a następnie klinknij przycisk "Szukaj!" aby
+  <h4 class="text-center my-4" *ngIf="freeTerms$ === undefined">Wybierz wartości w okienkach oznaczonych "*" a następnie
+    klinknij przycisk "Szukaj!" aby
     wyszukać dostępne terminy</h4>
-  <h4 class="text-center my-4" *ngIf="freeTerms$ === null">Niestety nie znaleźliśmy żadnych dostępnych terminów dla podanych kryteriów. Zmień parametry wyszukiwania i spróbuj ponownie.</h4>
+  <h4 class="text-center my-4" *ngIf="freeTerms$ === null">Niestety nie znaleźliśmy żadnych dostępnych terminów dla
+    podanych kryteriów. Zmień parametry wyszukiwania i spróbuj ponownie.</h4>
   <div class="row">
     <div *ngFor="let freeTerm of freeTerms$ | async" class="col-12 col-md-6 col-lg-6 p-0 p-md-1">
       <div class="row border rounded-lg bg-light px-0 px-md-1 py-2 m-2">
         <div class="col-9">
-          <h6 class="d-block mb-0 mt-2">{{freeTerm.doctor.firstName}} {{freeTerm.doctor.lastName}} - {{freeTerm.doctor.speciality}}</h6>
+          <h6 class="d-block mb-0 mt-2">{{freeTerm.doctor.firstName}} {{freeTerm.doctor.lastName}}
+            - {{freeTerm.doctor.speciality}}</h6>
           <span class="d-block text-muted place-style">{{freeTerm.clinic.name}}</span>
-          <span class="d-block">{{freeTerm.clinic.city}}, {{freeTerm.clinic.street}} {{freeTerm.clinic.houseNr}} {{freeTerm.clinic.flatNr}}</span>
-          <button class="btn btn-primary btn-sm btn-block p-1 my-2">Rezerwuj</button>
+          <span class="d-block">{{freeTerm.clinic.city}}
+            , {{freeTerm.clinic.street}} {{freeTerm.clinic.houseNr}} {{freeTerm.clinic.flatNr}}</span>
+          <button class="btn btn-primary btn-sm btn-block p-1 my-2" (click)="onReservationButtonClick(content, freeTerm)">
+            Rezerwuj
+          </button>
         </div>
         <div class="col-3 text-center m-auto border-left px-0 px-sm-2">
           <span class="d-block year-fontsize">{{freeTerm.dateOfAppointment | date: 'yyyy'}}</span>
@@ -114,4 +121,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-body text-center">
+    <fa-icon [icon]="faCheckCircle" [styles]="{'stroke': 'green', 'color': 'green'}" size="5x"></fa-icon>
+    <h5 class="mt-2"> Twoja rezerwacja została zapisana.</h5>
+    <button type="button" class="btn btn-outline-primary btn-sm btn-block mt-3 mb-2" routerLink="/dashboard" (click)="modal.close()">Powrót do tablicy</button>
+  </div>
+</ng-template>
 
