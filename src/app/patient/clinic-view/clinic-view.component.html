@@ -8,43 +8,42 @@
         <h6 class="mx-3 text-muted">{{clinic.postalCode}} {{clinic.city}},
           ul.{{clinic.street}} {{clinic.houseNr}} {{clinic.flatNr}}</h6>
 
-        <!-- Filter input -->
-        <div class="d-flex justify-content-center m-3">
-          <form class="form-inline">
-            <div class="input-group">
-              <div class="input-group-prepend">
-              <span class="input-group-text">
-                <fa-icon [icon]="faSearch"></fa-icon>
-              </span>
-              </div>
-              <input type="text" class="form-control">
-            </div>
-          </form>
+
+        <div class="text-center my-3">
+          <button type="button" class="btn btn-link" [style.font-weight]="this.currentUsedDayOfWeek === 1? 'bold' : 'inherit'" (click)="getDailySchedules(1)">Poniedziałek</button>
+          <button type="button" class="btn btn-link" [style.font-weight]="this.currentUsedDayOfWeek === 2? 'bold' : 'inherit'" (click)="getDailySchedules(2)">Wtorek</button>
+          <button type="button" class="btn btn-link" [style.font-weight]="this.currentUsedDayOfWeek === 3? 'bold' : 'inherit'" (click)="getDailySchedules(3)">Środa</button>
+          <button type="button" class="btn btn-link" [style.font-weight]="this.currentUsedDayOfWeek === 4? 'bold' : 'inherit'" (click)="getDailySchedules(4)">Czwartek</button>
+          <button type="button" class="btn btn-link" [style.font-weight]="this.currentUsedDayOfWeek === 5? 'bold' : 'inherit'" (click)="getDailySchedules(5)">Piątek</button>
+          <button type="button" class="btn btn-link" [style.font-weight]="this.currentUsedDayOfWeek === 6? 'bold' : 'inherit'" (click)="getDailySchedules(6)">Sobota</button>
+          <button type="button" class="btn btn-link" [style.font-weight]="this.currentUsedDayOfWeek === 7? 'bold' : 'inherit'" (click)="getDailySchedules(7)">Niedziela</button>
         </div>
 
-        <!-- Doctors section -->
-        <ng-container *ngFor="let doctor of doctors$ | async">
-          <div class="card my-3 p-4 border shadow bg-light">
-            <div class="row">
-              <div class="col-9">
-                <h5>{{doctor.firstName}} {{doctor.lastName}}</h5>
-                <span class="d-block text-muted">{{doctor.speciality}}</span>
-              </div>
-              <div class="col-3 text-center m-auto">
-                <button class="btn btn-secondary" (click)="openModal(doctor, clinic.id)">Zarezerwuj</button>
-              </div>
-            </div>
-          </div>
-        </ng-container>
+        <table class="table table-striped text-center">
+          <thead>
+          <tr>
+            <th scope="col">Imię i nazwisko</th>
+            <th scope="col">Specjalizacja</th>
+            <th scope="col">Godziny przyjęć</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let doctorWithDailySchedule of doctors$ | async">
+            <ng-template [ngIf]="doctorWithDailySchedule.dailySchedule.startingHour !== doctorWithDailySchedule.dailySchedule.endingHour">
+              <td>{{doctorWithDailySchedule.doctor.firstName}} {{doctorWithDailySchedule.doctor.lastName}}</td>
+              <td>{{doctorWithDailySchedule.doctor.speciality}}</td>
+              <td>{{doctorWithDailySchedule.dailySchedule.startingHour | slice:0:5}}
+                - {{doctorWithDailySchedule.dailySchedule.endingHour | slice:0:5}}</td>
+            </ng-template>
+          </tr>
+          </tbody>
+        </table>
 
       </div>
     </div>
 
     <div class="col-lg-4">
       <div *ngIf="clinic$ | async; let clinic" class="border rounded-lg bg-light p-3 my-4 text-center">
-        <img
-          src="https://complianz.io/wp-content/plugins/complianz-gdpr-premium/assets/images/placeholder-google-maps.jpg"
-          class="img-fluid mb-3">
         <h6>Numer kontaktowy</h6>
         <span><fa-icon [icon]="faPhoneAlt" class="mr-1"></fa-icon>
           {{clinic.phoneNumber}}<br></span>

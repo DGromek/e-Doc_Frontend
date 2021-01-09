@@ -22,3 +22,8 @@ export class Schedule {
   public suBegin: string;
   public suEnd: string;
 }
+
+export class DailySchedule {
+  public startingHour: string;
+  public endingHour: string;
+}
