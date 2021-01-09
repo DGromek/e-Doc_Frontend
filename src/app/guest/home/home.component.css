@@ -13,3 +13,11 @@
 p {
   font-size: 1.1rem;
 }
+
+.card {
+  border-width: 2px;
+}
+
+fa-icon {
+  font-size: 3rem;
+}

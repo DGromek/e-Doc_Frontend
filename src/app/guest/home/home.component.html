@@ -1,17 +1,61 @@
-<div class="banner p-5">
-  <div class="m-auto text-center">
-    <h1 class="banner-header d-block">Zadbaj o swoje zdrowie bez wychodzenia z domu</h1>
-    <button class="btn btn-outline-primary btn-lg">Zarejestruj się</button>
+<section>
+  <div class="banner p-5">
+    <div class="m-auto text-center">
+      <h1 class="banner-header d-block">Zadbaj o swoje zdrowie bez wychodzenia z domu</h1>
+      <button routerLink="/register" class="btn btn-outline-primary btn-lg">Zarejestruj się</button>
+    </div>
   </div>
-</div>
+</section>
 
-<div class="row p-5">
-  <div class="col-md-4 col-6">
-    <img class="img-fluid" src="../../../assets/doctor.svg" alt="doctor ilustration">
+<section class="p-5">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-12 col-md-6 pb-sm-3">
+        <img class="img-fluid px-5" src="../../../assets/doctor.svg" alt="doctor ilustration">
+      </div>
+      <div class="col-12 col-md-6 text-center">
+        <h3>Internetowy system rezerwacji wizyt medycznych</h3>
+        <p>Dzięki naszej aplikacji umówisz się na wizytę lekarską w dowolnie wybranym mieście, placówce, u wskazanego
+          lekarza i w wybranym
+          terminie dzięki rozbudowanym możliowściom filtrowania. Ngidy więcej stania w kolejkach ani wiszenia na linii
+          telefonicznej. Od teraz rezerwacja wizyty to tylko pare kliknięć myszką!
+          <br><br>
+          Umawiasz się na wizyty, gdzie chcesz i kiedy chcesz, bo aplikacja zawsze jest pod ręką.</p>
+      </div>
+    </div>
   </div>
-  <div class="col-md-8 col-6 text-center">
-    <h3>Internetowy system rezerwacji wizyt medycznych</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et faucibus ipsum. Fusce sodales rhoncus mauris, interdum dignissim felis fringilla vitae. Aenean et sapien in est hendrerit tempor eu sit amet nunc. Sed ultricies scelerisque velit. Sed consectetur ultrices scelerisque. Vivamus rutrum diam ligula, non vestibulum sapien cursus quis. Sed nec rhoncus metus, non volutpat mi. Sed congue est quam, tincidunt feugiat turpis dapibus vitae. Duis laoreet scelerisque ipsum, quis tempor sapien pretium non. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sit amet lacinia neque.</p>
+</section>
+
+<section>
+  <div class="container-lg pb-5">
+    <h3 class="text-center p-4">Potrzebujesz tylko 3 kroków aby zarezerwować swoją pierwszą wizytę!</h3>
+    <div class="card-deck rounded text-center">
+      <div class="card border-primary-light">
+        <div class="card-body">
+          <fa-icon class="text-primary-light" [icon]="faUserCircle"></fa-icon>
+          <h5 class="card-title">Załóż konto</h5>
+          <p class="card-text">Potrzebujesz stworzyć swój wirtualny identyfikator dzięki, któremu będziemy wiedzieć, że
+            Ty to Ty.</p>
+        </div>
+      </div>
+      <div class="card border-primary">
+        <div class="card-body">
+          <fa-icon class="text-primary" [icon]="faFilter"></fa-icon>
+          <h5 class="card-title">Dostosuj opcje wyszukiwania</h5>
+          <p class="card-text">Wybierz do jakiego specjalisty chcesz się udać, w jakim mieście i w jakim czasie, a
+            jeżeli chcesz to wybierz również preferowaną placówkę i lekarza. My zajmiemy się resztą!</p>
+        </div>
+      </div>
+      <div class="card border-primary-dark">
+        <div class="card-body">
+          <fa-icon class="text-primary-dark" [icon]="faCalendar"></fa-icon>
+          <h5 class="card-title">Zarezerwuj wybrany termin</h5>
+          <p class="card-text">Spośród wyświetlonych możliwości wybierz tą, która pasuje Ci najbardziej, kliknij
+            rezerwuj i gotowe! Nic więcej nie musisz robić! Jedyne co zostało to stawić się na wizytę.</p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
 
