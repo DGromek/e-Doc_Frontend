@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="border rounded-lg bg-light p-3 my-4">
+    <section>
+      <div class="row p-2">
+        <div>
+          <img src="https://via.placeholder.com/60" class="rounded-circle ml-4">
+        </div>
+
+        <div class="d-block" *ngIf="doctor$ | async; let doctor">
+          <h4 class="mx-3">{{doctor.firstName}} {{doctor.lastName}}</h4>
+          <h6 class="mx-3 text-muted">{{doctor.speciality}}</h6>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="row mt-2">
+        <div class="col-12 col-md-6" *ngFor="let rating of ratings$ | async">
+          <div class="card">
+            <div class="card-body pt-1">
+              <div class="text-right">
+              <ngb-rating [rate]="rating.rate" [readonly]="true" [max]="5" ></ngb-rating>
+              </div>
+              <p class="card-text">{{rating.description}}</p>
+            </div>
+            <div *ngIf="rating.patient | async; let patientSignature" class="card-footer text-right">
+              {{patientSignature.firstName}} {{patientSignature.lastName}}.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>

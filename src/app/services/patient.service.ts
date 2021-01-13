@@ -33,4 +33,9 @@ export class PatientService {
   login(credentials: Credintials): Observable<Token> {
     return this.http.post<Token>(environment.apiUrl + '/patients/login', credentials, AppComponent.headersObject);
   }
+
+  getPatientByAppointmentId(appointmentId: number): Observable<Patient> {
+    return this.http.get<Patient>(environment.apiUrl + '/patients/patientsSignature' +
+      '?appointmentId=' + appointmentId, AppComponent.headersObject);
+  }
 }

@@ -25,6 +25,7 @@ import { ClinicViewComponent } from './patient/clinic-view/clinic-view.component
 import { AppointmentBookingModalComponent } from './patient/appointment-booking-modal/appointment-booking-modal.component';
 import { VisitReservingComponent } from './patient/visit-reserving/visit-reserving.component';
 import { AppointmentTemplateComponent } from './core/appointment-template/appointment-template.component';
+import { DoctorViewComponent } from './patient/doctor-view/doctor-view.component';
 
 registerLocaleData(localePl);
 
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
   {path: 'clinics', component: ClinicsBrowserComponent},
   {path: 'clinics/:id', component: ClinicViewComponent},
   {path: 'reservation', component: VisitReservingComponent},
+  {path: 'doctors/:id', component: DoctorViewComponent},
   {
     path: '',
     redirectTo: '/home',
@@ -57,6 +59,7 @@ const appRoutes: Routes = [
     AppointmentBookingModalComponent,
     VisitReservingComponent,
     AppointmentTemplateComponent,
+    DoctorViewComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
