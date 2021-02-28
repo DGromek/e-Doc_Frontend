@@ -4,6 +4,8 @@ import {AppointmentDTO} from '../../model/AppointmentDTO';
 import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import {AppointmentService} from '../../services/appointment.service';
 import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import {RatingService} from '../../services/rating.service';
+import {RatingDTO} from "../../model/RatingDTO";
 
 @Component({
   selector: 'app-appointment-template',
@@ -13,10 +15,15 @@ import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 export class AppointmentTemplateComponent implements OnInit {
   @Input() appointment: Appointment;
   private appointmentService: AppointmentService;
+  private ratingService: RatingService;
+  ratingRate: number;
+  ratingDesc: string;
+  ratingAppointmentId: number;
   faCheckCircle = faCheckCircle;
   modalService: NgbModal;
-  constructor(appointmentService: AppointmentService, modalService: NgbModal) {
+  constructor(appointmentService: AppointmentService, modalService: NgbModal, ratingService: RatingService) {
     this.appointmentService = appointmentService;
+    this.ratingService = ratingService;
     this.modalService = modalService;
   }
 
@@ -37,4 +44,15 @@ export class AppointmentTemplateComponent implements OnInit {
     );
   }
 
+  onAddRatingButtonClick(modalId, appointmentId) {
+    this.modalService.open(modalId);
+    this.ratingAppointmentId = appointmentId;
+  }
+  addRatingSubmit() {
+    const ratingDto = new RatingDTO();
+    ratingDto.appointmentId = this.ratingAppointmentId;
+    ratingDto.rate = this.ratingRate;
+    ratingDto.description = this.ratingDesc;
+    this.ratingService.addRating(ratingDto);
+  }
 }
